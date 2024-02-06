@@ -29,11 +29,19 @@ if(isset($_POST['login'])){
 
             switch($userType){
                 case 'Customer':
-                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/customerDashboard.php");
+                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/customer/customerDashboard.php");
                     break;
 
                 case 'Admin':
-                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/adminDashboard.php");
+                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/admin/adminDashboard.php");
+                    break;
+
+                case 'ProductionStaff':
+                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/productionStaff/prodStaffDashboard.php");
+                    break;
+
+                case 'SalesStaff':
+                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/salesStaffDashboard.php");
                     break;
 
             }

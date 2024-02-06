@@ -1,0 +1,33 @@
+/* Only contains the form style */
+
+.hero {
+  display: flex;
+}
+
+.order-content {
+  flex: 1;
+  padding: 20px;
+  background-color: aliceblue;
+}
+
+/* Form container styles */
+.form-container {
+  width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
