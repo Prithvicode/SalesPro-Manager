@@ -24,6 +24,9 @@
           <a href="#" class="sidebar-link">Dashboard</a>
         </li>
         <li class="sidebar-item">
+          <a href="#" class="sidebar-link">Products</a>
+        </li>
+        <li class="sidebar-item">
           <a href="#" class="sidebar-link">SalesOrder</a>
           <ul class="submenu">
             <li><a class = "sidebar-link" href="#">Unverified List</a></li>

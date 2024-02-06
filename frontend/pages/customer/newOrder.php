@@ -44,27 +44,32 @@
         <!-- Your main content goes here -->
         <div class="form-container">
           <form id="orderForm">
-            <label for="currentDate">Current Date:</label>
+            <div class="top-items">
+             <label for="currentDate">Current Date:</label>
             <input
               type="text"
               id="currentDate"
               name="currentDate"
-              value="2024-01-28"
+              value=""
               readonly
             />
 
             <button type="button" id="addProductBtn">+ Add Product</button>
 
-            <div id="productList"></div>
+            </div>
+         
+
+            <div id="productList"></div><br>
 
             <label for="expectedDate">Expected Date:</label>
-            <input type="date" id="expectedDate" name="expectedDate" />
+            <input type="date" id="expectedDate" name="expectedDate" required/>
 
             <label for="paymentType">Payment Type:</label>
             <select id="paymentType" name="paymentType">
               <option value="online">Online</option>
               <option value="cash">Cash</option>
             </select>
+            <br>
 
             <input type="submit" value="Submit Order" />
           </form>
@@ -73,9 +78,16 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="">
+    <script src = "newOrderForm.js"></script>
+    <script >
+        const currentDateInput = document.getElementById("currentDate")
+        var currentDate =  new Date().toISOString().slice(0, 10).replace(/-/g, ' / ');
+        console.log(currentDate);
+        currentDateInput.value =  currentDate;
 
-        
+
+        // Add button
+          const addProductBtn = document.getElementById("addProductBtn");
 
     </script>
   </body>
