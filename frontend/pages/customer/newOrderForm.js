@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const addProductBtn = document.getElementById("addProductBtn");
   const productList = document.getElementById("productList");
   const submitOrderBtn = document.getElementById("submitNewOrder");
+  submitOrderBtn.disabled = true;
 
   addProductBtn.addEventListener("click", function () {
     const productItem = document.createElement("div");
@@ -26,8 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     productList.appendChild(productItem);
 
-    // Fetch Product data from PHP script
-
+    // Fetch Product data for drop down options
     const productNameInput = productItem.querySelector("#productName");
 
     let productPrices = {};
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
 
-    console.log(productPrices);
+    // console.log(productPrices);
     const priceInput = productItem.querySelector("#price");
     const quantityInput = productItem.querySelector("#quantity");
     const amountInput = productItem.querySelector("#amount");
@@ -84,17 +84,24 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("quntity is number");
       }
     });
+
     // Calculate Amount when Quantity change.
     quantityInput.addEventListener("input", function () {
       const quantity = parseInt(quantityInput.value);
+      console.log(quantity);
       // Check if quantity is negative
       if (quantity < 0) {
         alert("Quantity cannot be negative");
-        submitOrderBtn.disabled = true; // Disable submit button
-      } else {
+        submitOrderBtn.disabled = true;
+
+        // Disable submit button
+      } else if (quantity > 0) {
+        // console.log("Not negative");
+        // console.log(quantity);
         const price = parseInt(priceInput.value);
         const amount = quantity * price;
         amountInput.value = amount;
+        submitOrderBtn.disabled = false;
       }
     });
 
