@@ -22,6 +22,7 @@
    
 
 </form> 
+<a href="http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php">Register</a>
 <?php 
 if(isset($_GET['msg'])){
     $msg = $_GET['msg'];

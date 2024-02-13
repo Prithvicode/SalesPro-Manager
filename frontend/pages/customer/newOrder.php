@@ -14,7 +14,10 @@
       <div class="navbar-logo">Place Order</div>
       <div class="navbar-icons">
         <div class="notification-icon">🔔</div>
-        <div class="logout-button">Logout</div>
+        <div class="logout-button">
+          <a href="http://localhost/InventoryAndSalesManagement/backend/functions/authentication/logout.php">
+        Logout
+          </a></div>
       </div>
     </nav>
 
@@ -71,7 +74,7 @@
             </select>
             <br>
 
-            <input type="submit" value="Submit Order" />
+            <input type="submit" value="Submit Order" id = 'submitNewOrder' />
           </form>
         </div>
       </main>
@@ -88,6 +91,77 @@
 
         // Add button
           const addProductBtn = document.getElementById("addProductBtn");
+
+
+    
+  // POST orderDetails
+  document.getElementById('orderForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+
+    // To store order Deatails
+    const orderDetails = [];
+    // To store multiple product details
+    const orderItemDetails = [];
+
+    const productItems = document.querySelectorAll(".product-item");
+    const formData = new FormData();
+
+    productItems.forEach(function (productItem, index) {
+        const productName = productItem.querySelector("#productName").value;
+        const price = productItem.querySelector("#price").value;
+        const quantity = productItem.querySelector("#quantity").value;
+        const amount = productItem.querySelector("#amount").value;
+
+        orderItemDetails.push([productName, price, quantity, amount]);
+    });
+    console.log( orderItemDetails);
+     
+    // Get Order Details 
+
+
+
+    // Get Order Items Details
+
+
+
+    
+
+    // URL endpoint to send the POST request to
+    const url = '';
+
+    // // Options for the fetch request
+    // const options = {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json' // Specify content type as JSON
+    //     },
+    //     body: JSON.stringify(postData) // Convert JavaScript object to JSON string
+    // };
+
+    // // Send the POST request
+    // fetch(url, options)
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+    //         return response.json(); // Parse the JSON response
+    //     })
+    //     .then(data => {
+    //         console.log('Response:', data);
+    //         // Handle the response data
+    //     })
+    //     .catch(error => {
+    //         console.error('There was a problem with the fetch operation:', error);
+    //         // Handle errors
+    //     });
+});
+
+      
+
+
+      // POST order Items
+
 
     </script>
   </body>

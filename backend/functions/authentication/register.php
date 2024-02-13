@@ -34,7 +34,7 @@ if(isset($_POST['register'])){
             // Hashing the password:
                 $hash_pass = password_hash($inputPassword,PASSWORD_DEFAULT);
                     // Insert into user table.
-                $insertUserquery = "insert into users(firstName, lastName, email, passwordHash,userType,phoneNumber, address) 
+                $insertUserquery = "insert into users(FirstName, LastName, Email, PasswordHash,UserType,PhoneNumber, Address) 
                                     values(
                                         '$inputFname',
                                         '$inputLname ',

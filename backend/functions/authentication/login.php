@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start the session
+
 if(isset($_POST['login'])){
     // importing config file
     include("../../db/dbconfig.php");
@@ -6,7 +8,7 @@ if(isset($_POST['login'])){
     $inputEmail = $_POST['email'];
     $inputPassword = $_POST['password'];
 
-    $userQuery = "SELECT * FROM users where email = '$inputEmail'";
+    $userQuery = "SELECT * FROM users where Email = '$inputEmail'";
 
     $userResult = mysqli_query($conn, $userQuery);
 
@@ -15,17 +17,19 @@ if(isset($_POST['login'])){
         $row = mysqli_fetch_assoc($userResult);
 
         // Check Password:
-        if(password_verify($inputPassword, $row['passwordHash'])){
+        if(password_verify($inputPassword, $row['PasswordHash'])){
             // Correct Password
 
             // Create session.
-            
+            $_SESSION['UserID'] = $row['UserID']; // Set the session variable
+            $_SESSION['UserType'] = $row['UserType']; // Set the session variable
+
             // $GLOBALS['userID'] = $row['userID'];
             // $GLOBALS['Name'] = $row['firstName'];
             global $userName;
-            $userName = $row['firstName'];
+            $userName = $row['FirstName'];
             // Redirect according to UserType
-            $userType = $row['userType'];
+            $userType = $row['UserType'];
 
             switch($userType){
                 case 'Customer':
@@ -56,8 +60,5 @@ if(isset($_POST['login'])){
         // User Doesnt exists.
            header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php?msg=InvalidEmail ");
     }
-
-
-
-  
 }
+?>

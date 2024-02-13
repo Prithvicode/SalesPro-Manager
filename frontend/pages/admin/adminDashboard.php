@@ -1,3 +1,20 @@
+<?php 
+session_start();
+if(!isset($_SESSION['UserID'])){
+header('location: http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php');
+}
+
+if( $_SESSION['UserType'] != 'Admin'){
+    echo "Access Denied";
+
+}
+else {
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,7 +29,7 @@
       <div class="navbar-logo">Admin Dashboard</div>
       <div class="navbar-icons">
         <div class="notification-icon">🔔</div>
-        <div class="logout-button">Logout</div>
+        <div class="logout-button"><a href="http://localhost/InventoryAndSalesManagement/backend/functions/authentication/logout.php">Logout</a></div>
       </div>
     </nav>
 
@@ -24,7 +41,7 @@
           <a href="#" class="sidebar-link">Dashboard</a>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">Products</a>
+          <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/admin/addProduct.php#" class="sidebar-link">Products</a>
         </li>
         <li class="sidebar-item">
           <a href="#" class="sidebar-link">SalesOrder</a>
@@ -64,3 +81,6 @@
     <script src="scripts.js"></script>
   </body>
 </html>
+<?php
+}
+?>

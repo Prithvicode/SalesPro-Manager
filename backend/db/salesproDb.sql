@@ -59,7 +59,8 @@ CREATE TABLE Orders (
     CONSTRAINT FK_Orders_AssignedDeliveryStaff FOREIGN KEY (AssignedDeliveryStaffID) REFERENCES Users(UserID)
 );
 
-
+alter table orders
+drop column OrderNumber
 
 
 
@@ -85,8 +86,6 @@ CREATE TABLE Sales (
 );
 
 
-ALTER TABLE ProductionLog
-ADD COLUMN ProductionStaffID INT;
 
 
 ALTER TABLE ProductionLog
