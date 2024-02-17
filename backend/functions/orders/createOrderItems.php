@@ -29,7 +29,7 @@ function insertOrderItems($conn, $orderId, $orderItems){
         // Check if the query was successful
         if ($result) {
             // Append success message to response array
-            $response = "Successfully inserted";
+            $response = "Your order is submitted successfully. Please wait for further verification.";
         } else {
             // Append failure message to response array
             $response = "Failed to insert";
@@ -37,6 +37,8 @@ function insertOrderItems($conn, $orderId, $orderItems){
     }
     return $response; // Return the response array
 }
+
+
 
 
 

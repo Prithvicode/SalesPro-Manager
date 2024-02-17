@@ -1,0 +1,31 @@
+.hero {
+  display: flex;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+.orders-containers {
+  /* background-color: blue; */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5rem;
+}
+#orderTable {
+}
+
+#orderDetailFrame {
+  display: flex;
+  flex-direction: column;
+  /* background-color: blue; */
+  width: 300px;
+  height: auto;
+}
+
+#iframeContent {
+  width: 500px;
+  height: auto;
+}

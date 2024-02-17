@@ -21,7 +21,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="customerStyle.css" />
-    <link rel="stylesheet" href="forms/customer-dashboard-styles.css" />
+    <!-- <link rel="stylesheet" href="forms/customer-dashboard-styles.css" /> -->
   </head>
   <body>
     <!-- Navbar -->
@@ -51,18 +51,18 @@ else {
             >
           </li>
           <li class="sidebar-item">
-            <a href="" class="sidebar-link">My Order Status</a>
+            <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/customer/orderStatusPage.php" class="sidebar-link">My Order Status</a>
           </li>
           <li class="sidebar-item">
             <a href="#" class="sidebar-link">Profile</a>
           </li>
         </ul>
       </aside>
-
+<h1>hello</h1>
       <!-- Main Content -->
-      <main class="main-content">
- 
-      </main>
+     <iframe src="" frameborder="0">
+
+     </iframe>
     </div>
    
   </body>

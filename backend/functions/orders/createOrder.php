@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+include '../../db/dbconfig.php';
 include 'getOrder.php';
 include 'createOrderItems.php';
 

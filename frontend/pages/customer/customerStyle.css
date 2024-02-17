@@ -83,3 +83,7 @@ body {
 .active {
   background-color: #007bff;
 }
+
+.hero {
+  display: flex;
+}

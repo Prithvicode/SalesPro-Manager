@@ -31,10 +31,10 @@
             class="sidebar-link">Dashboard</a>
           </li>
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link active">New Order</a>
+            <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/customer/orderStatusPage.php" class="sidebar-link active">New Order</a>
           </li>
           <li class="sidebar-item">
-            <a href="" class="sidebar-link">My Order Status</a>
+            <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/customer/orderStatusPage.php" class="sidebar-link">My Order Status</a>
           </li>
           <li class="sidebar-item">
             <a href="#" class="sidebar-link">Profile</a>
@@ -168,6 +168,7 @@ console.log(postData);
         })
         .then(data => {
             console.log('Response:', data);
+             alert(data.message); 
             // Handle the response data
         })
         .catch(error => {
