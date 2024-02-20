@@ -58,7 +58,7 @@
           <a href="#" class="sidebar-link">Dashboard</a>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">Assigned Order List</a>
+          <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/assignedOrders.php" class="sidebar-link">Assigned Order List</a>
         </li>
         <li class="sidebar-item">
           <a href="#" class="sidebar-link">My Sales History</a>
