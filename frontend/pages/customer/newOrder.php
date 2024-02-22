@@ -108,6 +108,9 @@
     document.getElementById('orderForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent the default form submission
 
+      //check quantity
+    
+
     // Get order details
     const currentDate = document.getElementById('currentDate').value;
     const expectedDate = document.getElementById('expectedDate').value;
@@ -169,7 +172,8 @@ console.log(postData);
         .then(data => {
             console.log('Response:', data);
              alert(data.message); 
-            // Handle the response data
+            setTimeout(function() { window.location.reload()},500);
+
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

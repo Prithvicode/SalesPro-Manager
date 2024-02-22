@@ -55,13 +55,13 @@
       <div class="sidebar-header">Menu</div>
       <ul class="sidebar-menu">
         <li class="sidebar-item active">
-          <a href="#" class="sidebar-link">Dashboard</a>
+          <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/salesDashboard.php" class="sidebar-link">Dashboard</a>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">Assigned Order List</a>
+          <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/assignedOrders.php" class="sidebar-link">Assigned Order List</a>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">My Sales History</a>
+          <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/salesHistory.php" class="sidebar-link">My Sales History</a>
         </li>
       </ul>
     </aside>

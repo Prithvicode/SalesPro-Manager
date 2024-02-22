@@ -5,7 +5,7 @@
 function getOrderItems($conn, $orderId){
     $requestedOrderItems = [];
 
-    $getOrderItemSql = "SELECT * FROM orderItems WHERE OrderID = '$orderId'";
+    $getOrderItemSql = "SELECT * FROM orderItems WHERE OrderID = $orderId";
 
     $result = mysqli_query($conn, $getOrderItemSql);
 

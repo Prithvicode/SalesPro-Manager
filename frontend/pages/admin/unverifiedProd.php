@@ -17,7 +17,8 @@ $requestedOrders = [];
     // Show unveified i.e Pending Order list
 
 
-    $pendingOrderSql = "SELECT * from orders where VerificationStatus = 'Verified' and ProductionStatus = 'Completed'";
+    $pendingOrderSql = "SELECT * from orders where VerificationStatus = 'Verified' and AssignedDeliveryStaffID is NULL 
+    and ProductionStatus = 'Completed'";
 
     $result = mysqli_query($conn, $pendingOrderSql);
     if($result){

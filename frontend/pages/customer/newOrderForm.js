@@ -89,11 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
     quantityInput.addEventListener("input", function () {
       const quantity = parseInt(quantityInput.value);
       console.log(quantity);
+      console.log("qthi this is quantiy");
       // Check if quantity is negative
       if (quantity < 0) {
         alert("Quantity cannot be negative");
         submitOrderBtn.disabled = true;
-
         // Disable submit button
       } else if (quantity > 0) {
         // console.log("Not negative");
@@ -102,6 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const amount = quantity * price;
         amountInput.value = amount;
         submitOrderBtn.disabled = false;
+      } else if (quantity == 0) {
+        alert("Quantity cannot be zero");
+        submitOrderBtn.disabled = true;
       }
     });
 
