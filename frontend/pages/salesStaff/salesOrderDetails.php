@@ -64,43 +64,63 @@ if(isset($_POST['saleEntry'])){
 
 
 ?>
-<table border = 1 id="customerDetail-table">
-    <tr>
-    <th>Order ID</th>
-    <th>Customer Name</th>
-    <th>Phone Number</th>
-    <th>Address</th>
-</tr>
-  <tr>
+
      <?php 
+     $orderDetails = array(   
+                'OrderID' => "",
+                'CustomerName' => "",
+                'OrderDate' =>"" ,
+                'VerificationStatus' => "",
+                'deliveryCity' => "",
+                'deliveryAddress' =>"" ,
+                'deliveryInstructions' => "",
+                'phoneNumber' => "",
+                'DeliveryDate' => ""
+    );
+
    
      // fetch customer details 
-       $getCustomerSql = " SELECT users.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name, 
-                        orders.DeliveryStatus
-                        FROM users
-                        JOIN orders ON orders.CustomerID = users.UserID
-                        where orderID = '$orderId'";  
+       $allOrderDetailSql = "SELECT orders.*, 
+                           CONCAT(users.FirstName, ' ', users.LastName) AS Name,
+                           deliveryDetails.phoneNumber,
+                           deliveryDetails.deliveryCity,
+                           deliveryDetails.deliveryAddress,
+                           deliveryDetails.deliveryInstructions
+                    FROM orders
+                    JOIN users ON orders.CustomerID = users.UserID
+                    JOIN deliveryDetails ON orders.OrderID = deliveryDetails.OrderID
+                    WHERE orders.OrderID = '$orderId'";
 
-        $result = mysqli_query($conn, $getCustomerSql);
-        if($result){
-            while($row = mysqli_fetch_assoc($result)){
-                ?>
-              
-                <td><?php echo $orderId?></td>
-                <td><?php echo $row['Name']?></td>
-                <td><?php echo $row['PhoneNumber']?></td>
-                <td><?php echo $row['Address']?></td>
-             <?php   
+$result = mysqli_query($conn, $allOrderDetailSql);
+if($result){
+    while($row = mysqli_fetch_assoc($result)){
+             $orderDetails = array(   
+                'OrderID' => $row['OrderID'],
+                'CustomerName' => $row['Name'],
+                'OrderDate' => $row['OrderDate'],
+                'VerificationStatus' => $row['VerificationStatus'],
+                'deliveryCity' => $row['deliveryCity'],
+                'deliveryAddress' => $row['deliveryAddress'],
+                'deliveryInstructions' => $row['deliveryInstructions'],
+                'phoneNumber' => $row['phoneNumber'],
+                'DeliveryDate' => $row['DeliveryDate']
+    );
                 $currentDeliveryStatus = $row['DeliveryStatus'];
             }
          
             // echo "<script> console.log('" . $currentDeliveryStatus ."') </script>" ;
             // echo $currentDeliveryStatus;
         }?>
-</tr>
 
-</table>
+<!-- show order and custoemr Details -->
 
+<p>Order ID:<?php echo $orderDetails['OrderID']?><p>
+<p>Customer Name: <?php echo $orderDetails['CustomerName']?><p>
+<p>Phone Number: <?php echo $orderDetails['phoneNumber']?><p>
+<p>Delivery City: <?php echo $orderDetails['deliveryCity']?><p>
+<p>Delivery Address: <?php echo $orderDetails['deliveryAddress']?><p>
+<p>Delivery Instruction:<?php echo $orderDetails['deliveryInstructions']?> <p>
+<p>Delivery Date: <?php echo $orderDetails['DeliveryDate']?><p>
 <br>
 <!-- Show the order item details table -->
 <table border="1">
@@ -156,7 +176,7 @@ action=""
 method = "POST">
     
     <label for="">Date</label>
-    <input type="date" id= 'saleDate'  name = 'salesDate'><br>
+    <input type="date" id= 'saleDate'  name = 'salesDate' min="<?php echo date('Y-m-d'); ?>"><br>
 
     <label for="totalAmount" >Total Amount: </label>
 <input 

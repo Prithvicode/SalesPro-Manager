@@ -4,6 +4,7 @@ session_start();
 include '../../db/dbconfig.php';
 include 'getOrder.php';
 include 'createOrderItems.php';
+include '../customer/deliveryDetails.php';
 
 
 // Check if the request method is POST
@@ -17,10 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get order details
     $currentDate = $postData['currentDate'];
     $expectedDate = $postData['expectedDate'];
-    $paymentType = $postData['paymentType'];
+    // $paymentType = $postData['paymentType'];
 
     // Get product items details
     $orderItemDetails = $postData['orderItemDetails'];
+
+    $deliveryDetails = $postData['deliveryDetails'];
 
 
     // customer ID
@@ -42,6 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = insertOrderItems($conn, $orderId, $orderItemDetails);
 
 
+    // post delivery Details
+    addDeliveryDetailsForOrders($conn,$deliveryDetails, $orderId );
+    
     // Create a response array
        $response = array(
         "message" => $message

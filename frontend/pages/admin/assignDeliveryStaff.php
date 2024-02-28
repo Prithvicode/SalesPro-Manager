@@ -8,6 +8,52 @@ $orderId = $_GET['id'];
 
 // Get order details 
 $orderItems = getOrderItems($conn, $orderId);
+ $orderDetails = array(   
+                'OrderID' => "",
+                'CustomerName' => "",
+                'OrderDate' =>"" ,
+                'VerificationStatus' => "",
+                'deliveryCity' => "",
+                'deliveryAddress' =>"" ,
+                'deliveryInstructions' => "",
+                'phoneNumber' => "",
+                'DeliveryDate' => ""
+    );
+
+// $allOrderDetails = array();
+// get customerDetails and deliveryDetails
+$allOrderDetailSql = "SELECT orders.*, 
+                           CONCAT(users.FirstName, ' ', users.LastName) AS Name,
+                           deliveryDetails.phoneNumber,
+                           deliveryDetails.deliveryCity,
+                           deliveryDetails.deliveryAddress,
+                           deliveryDetails.deliveryInstructions
+                    FROM orders
+                    JOIN users ON orders.CustomerID = users.UserID
+                    JOIN deliveryDetails ON orders.OrderID = deliveryDetails.OrderID
+                    WHERE orders.OrderID = '$orderId' and orders.VerificationStatus = 'Verified' and orders.ProductionStatus = 'Completed'";
+                     
+
+
+$result = mysqli_query($conn, $allOrderDetailSql);
+if($result){
+    while($row = mysqli_fetch_assoc($result)){
+             $orderDetails = array(   
+                'OrderID' => $row['OrderID'],
+                'CustomerName' => $row['Name'],
+                'OrderDate' => $row['OrderDate'],
+                'VerificationStatus' => $row['VerificationStatus'],
+                'deliveryCity' => $row['deliveryCity'],
+                'deliveryAddress' => $row['deliveryAddress'],
+                'deliveryInstructions' => $row['deliveryInstructions'],
+                'phoneNumber' => $row['phoneNumber'],
+                'DeliveryDate' => $row['DeliveryDate']
+    );
+    // $allOrderDetails[] = $orderDetails;
+    }
+
+}
+
 
 // get productName from productId
 function getProductNameFromID($conn, $prdId){
@@ -21,6 +67,18 @@ function getProductNameFromID($conn, $prdId){
     return $productName;   
 }
 ?>
+
+
+<!-- show order and custoemr Details -->
+
+<p>Order ID:<?php echo $orderDetails['OrderID']?><p>
+<p>Customer Name: <?php echo $orderDetails['CustomerName']?><p>
+<p>Phone Number: <?php echo $orderDetails['phoneNumber']?><p>
+<p>Delivery City: <?php echo $orderDetails['deliveryCity']?><p>
+<p>Delivery Address: <?php echo $orderDetails['deliveryAddress']?><p>
+<p>Delivery Instruction:<?php echo $orderDetails['deliveryInstructions']?> <p>
+<p>Delivery Date: <?php echo $orderDetails['DeliveryDate']?><p>
+
 <!-- Show the order item details table -->
 <table border="1">
     <tr>

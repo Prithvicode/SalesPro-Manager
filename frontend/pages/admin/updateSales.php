@@ -66,62 +66,42 @@ if(isset($_POST['saleUpdate'])){
     }
 }else{
 ?>
-<?php 
-     $orderDetails = array(   
-                'OrderID' => "",
-                'CustomerName' => "",
-                'OrderDate' =>"" ,
-                'VerificationStatus' => "",
-                'deliveryCity' => "",
-                'deliveryAddress' =>"" ,
-                'deliveryInstructions' => "",
-                'phoneNumber' => "",
-                'DeliveryDate' => ""
-    );
-
-   
+<table border = 1 id="customerDetail-table">
+    <tr>
+    <th>Order ID</th>
+    <th>Customer Name</th>
+    <th>Phone Number</th>
+    <th>Address</th>
+</tr>
+  <tr>
+     <?php 
      // fetch customer details 
-       $allOrderDetailSql = "SELECT orders.*, 
-                           CONCAT(users.FirstName, ' ', users.LastName) AS Name,
-                           deliveryDetails.phoneNumber,
-                           deliveryDetails.deliveryCity,
-                           deliveryDetails.deliveryAddress,
-                           deliveryDetails.deliveryInstructions
-                    FROM orders
-                    JOIN users ON orders.CustomerID = users.UserID
-                    JOIN deliveryDetails ON orders.OrderID = deliveryDetails.OrderID
-                    WHERE orders.OrderID = '$orderId'";
+       $getCustomerSql = " SELECT users.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name,
+                        orders.DeliveryStatus
+                        FROM users
+                        JOIN orders ON orders.CustomerID = users.UserID
+                        where orderID = $orderId";  
 
-$result = mysqli_query($conn, $allOrderDetailSql);
-if($result){
-    while($row = mysqli_fetch_assoc($result)){
-             $orderDetails = array(   
-                'OrderID' => $row['OrderID'],
-                'CustomerName' => $row['Name'],
-                'OrderDate' => $row['OrderDate'],
-                'VerificationStatus' => $row['VerificationStatus'],
-                'deliveryCity' => $row['deliveryCity'],
-                'deliveryAddress' => $row['deliveryAddress'],
-                'deliveryInstructions' => $row['deliveryInstructions'],
-                'phoneNumber' => $row['phoneNumber'],
-                'DeliveryDate' => $row['DeliveryDate']
-    );
-                $currentDeliveryStatus = $row['DeliveryStatus'];
+        $result = mysqli_query($conn, $getCustomerSql);
+        if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                ?>
+              
+                <td><?php echo $orderId?></td>
+                <td><?php echo $row['Name']?></td>
+                <td><?php echo $row['PhoneNumber']?></td>
+                <td><?php echo $row['Address']?></td>
+
+                
+             <?php  
+             // set Delivery Status;
+             $currentDeliveryStatus = $row['DeliveryStatus'];
             }
-         
-            // echo "<script> console.log('" . $currentDeliveryStatus ."') </script>" ;
-            // echo $currentDeliveryStatus;
         }?>
+</tr>
 
-<!-- show order and custoemr Details -->
+</table>
 
-<p>Order ID:<?php echo $orderDetails['OrderID']?><p>
-<p>Customer Name: <?php echo $orderDetails['CustomerName']?><p>
-<p>Phone Number: <?php echo $orderDetails['phoneNumber']?><p>
-<p>Delivery City: <?php echo $orderDetails['deliveryCity']?><p>
-<p>Delivery Address: <?php echo $orderDetails['deliveryAddress']?><p>
-<p>Delivery Instruction:<?php echo $orderDetails['deliveryInstructions']?> <p>
-<p>Delivery Date: <?php echo $orderDetails['DeliveryDate']?><p>
 <br>
 <!-- Show the order item details table -->
 <table border="1">
@@ -193,13 +173,13 @@ readonly><br>
         <option value="Online" <?php if ( $saleDetails['PaymentType'] == 'Online') echo 'selected'; ?> >Online</option>
         <option value="Cash" <?php if ( $saleDetails['PaymentType'] == 'Cash') echo 'selected'; ?>>Cash</option>
     </select><br>
-<!-- 
+
 
 <label for="moneyReceived">Money Received:</label>
     <select name="moneyReceived" id="moneyReceived">
-        <option value="Yes" <?php //if ( $saleDetails['MoneyReceived'] == 'Yes') echo 'selected'; ?>>Yes</option>
-        <option value="No" <?php //if ( $saleDetails['MoneyReceived'] == 'No') echo 'selected'; ?>>No</option>
-    </select><br> -->
+        <option value="Yes" <?php if ( $saleDetails['MoneyReceived'] == 'Yes') echo 'selected'; ?>>Yes</option>
+        <option value="No" <?php if ( $saleDetails['MoneyReceived'] == 'No') echo 'selected'; ?>>No</option>
+    </select><br>
 
 <label for="profitMade">Profit Made: </label>
 <input type="text"  

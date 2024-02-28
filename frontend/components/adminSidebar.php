@@ -99,7 +99,7 @@ body {
           <a href="#" class="sidebar-link">Inventory</a>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">Sales Verification</a>
+          <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/admin/salesVerification.php" class="sidebar-link">Sales Verification</a>
         </li>
         <li class="sidebar-item">
           <a href="#" class="sidebar-link">Sales History</a>

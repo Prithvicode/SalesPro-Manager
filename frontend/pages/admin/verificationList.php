@@ -63,7 +63,7 @@ display:flex;
 
 #iframeContent {
   width: 500px;
-  height: auto;
+  height: 600px;
 }
 </style>
 </head>

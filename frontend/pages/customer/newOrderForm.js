@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <label for="price">Price:</label>
             <input type="number" id="price" name="price" value=0.00 readonly>
             <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" required>
+            <input type="number" id="quantity" name="quantity" min=1 required>
             <label for="amount">Amount:</label>
             <input type="text" id="amount" name="amount"  readonly>
             <button type="button" class="reduceProductBtn">Remove</button>

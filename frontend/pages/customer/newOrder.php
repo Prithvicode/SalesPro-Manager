@@ -66,14 +66,27 @@
 
             <div id="productList"></div><br>
 
-            <label for="expectedDate">Expected Date:</label>
-            <input type="date" id="expectedDate" name="expectedDate" required/>
+    
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" required> <br>
 
-            <label for="paymentType">Payment Type:</label>
-            <select id="paymentType" name="paymentType">
-              <option value="online">Online</option>
-              <option value="cash">Cash</option>
-            </select>   <br>
+    <label for="deliveryCity">Delivery City:</label>
+    <select name="deliveryCity" id="deliveryCity">
+      <option value="Kathmandu">Kathmandu</option>
+      <option value="Lalitpur">Lalitpur</option>
+
+    </select>
+
+    <label for="deliveryAddress">Delivery Address:</label>
+   <input type="text" id="deliveryAddress" name="deliveryAddress" required> <br>
+
+
+    <label for="deliveryInstructions">Delivery Instructions:</label>
+    <textarea id="deliveryInstructions" name="deliveryInstructions"></textarea> <br>
+    
+     <label for="expectedDate">Expected Date:</label>
+      <input type="date" id="expectedDate" name="expectedDate" required min="<?php echo date('Y-m-d'); ?>"/>
+
 
             <input type="submit" value="Submit Order" id = 'submitNewOrder' name ='submitOrder'/>
           </form>
@@ -114,12 +127,29 @@
     // Get order details
     const currentDate = document.getElementById('currentDate').value;
     const expectedDate = document.getElementById('expectedDate').value;
-    const paymentType = document.getElementById('paymentType').value;
+    
+
+
+    // get delivery Details
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const deliveryCity= document.getElementById('deliveryCity').value;
+    const deliveryAddress= document.getElementById('deliveryAddress').value;
+    const  deliveryInstructions= document.getElementById('deliveryInstructions').value;
+
+
+    const deliveryDetails = {
+    phoneNumber: phoneNumber,
+    deliveryCity: deliveryCity,
+    deliveryAddress: deliveryAddress,
+    deliveryInstructions: deliveryInstructions
+};
+
 
 
     // Get product items details
     const productItems = document.querySelectorAll(".product-item");
     const orderItemDetails = [];
+    
 
     productItems.forEach(function (productItem, index) {
         const productID = productItem.querySelector(`#productName`).value;
@@ -136,7 +166,7 @@
         });
     });
 
-    console.log("ORder items"+ orderItemDetails);
+    // console.log("ORder items"+ orderItemDetails);
    
 console.log(customerID);
     // Construct the data object to send in the request
@@ -144,8 +174,8 @@ console.log(customerID);
         customerId: customerID,
         currentDate: currentDate,
         expectedDate: expectedDate,
-        paymentType: paymentType,
-        orderItemDetails: orderItemDetails
+        orderItemDetails: orderItemDetails,
+        deliveryDetails : deliveryDetails
     };
 console.log("POSt dta: ")
 console.log(postData);
