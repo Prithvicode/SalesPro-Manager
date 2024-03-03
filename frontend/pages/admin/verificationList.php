@@ -17,7 +17,10 @@ $requestedOrders = [];
     // Show unveified i.e Pending Order list
 
 
-    $pendingOrderSql = "SELECT * from orders where VerificationStatus = 'Pending'";
+    $pendingOrderSql = "SELECT orders.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name
+                    FROM orders
+                    JOIN users ON orders.CustomerID = users.UserID
+                    where VerificationStatus = 'Pending'";
 
     $result = mysqli_query($conn, $pendingOrderSql);
     if($result){
@@ -25,7 +28,7 @@ $requestedOrders = [];
         while($row = mysqli_fetch_assoc($result)){
             $order = array(
                 'OrderID' => $row['OrderID'],
-                'CustomerID' => $row['CustomerID'],
+                'CustomerName' => $row['Name'],
                 'OrderDate' => $row['OrderDate'],
                 'VerificationStatus' => $row['VerificationStatus'],
             
@@ -95,7 +98,7 @@ display:flex;
             <?php foreach ($requestedOrders as $order): ?>
                 <tr>
                     <td><?php echo $order['OrderID']; ?></td>
-                    <td><?php echo $order['CustomerID']; ?></td>
+                    <td><?php echo $order['CustomerName']; ?></td>
                     <td><?php echo $order['OrderDate']; ?></td>
                     <td><?php echo $order['VerificationStatus']; ?></td>
                     <td><?php echo $order['DeliveryDate']; ?></td>

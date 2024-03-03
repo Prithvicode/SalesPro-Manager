@@ -39,7 +39,7 @@ if(isset($_POST['saleUpdate'])){
     $salesDate = $_POST['salesDate'];
     $totalAmount = $_POST['totalAmount'];
     $paymentType = $_POST['paymentType'];
-    $moneyReceived = $_POST['moneyReceived'];
+    // $moneyReceived = $_POST['moneyReceived'];
     $profitMade = $_POST['profitMade'];
     $salesID =$saleDetails['SalesID'];
 
@@ -47,7 +47,7 @@ if(isset($_POST['saleUpdate'])){
    $updateSalesSql = "UPDATE sales SET
                         SalesStaffID = '$salesStaffId',
                         SalesTimestamp = '$salesDate',
-                        MoneyReceived = '$moneyReceived',
+                        
                         TotalAmount = '$totalAmount',
                         ProfitMade = '$profitMade',
                         PaymentType = '$paymentType'

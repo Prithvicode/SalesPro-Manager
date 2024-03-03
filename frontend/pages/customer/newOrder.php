@@ -68,7 +68,7 @@
 
     
     <label for="phoneNumber">Phone Number:</label>
-    <input type="tel" id="phoneNumber" name="phoneNumber" required> <br>
+<input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required><br>
 
     <label for="deliveryCity">Delivery City:</label>
     <select name="deliveryCity" id="deliveryCity">
@@ -135,6 +135,8 @@
     const deliveryCity= document.getElementById('deliveryCity').value;
     const deliveryAddress= document.getElementById('deliveryAddress').value;
     const  deliveryInstructions= document.getElementById('deliveryInstructions').value;
+
+    // 
 
 
     const deliveryDetails = {
