@@ -1,0 +1,57 @@
+.modelPopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.confirm-verify {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+#verify,
+#verify-pop {
+  background-color: lightskyblue;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+#verify:hover,
+#verify-pop:hover {
+  background-color: rgb(27, 100, 145);
+  color: white;
+}
+
+#cancel {
+  background-color: rgba(245, 101, 101, 0.881);
+  color: black;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+#cancel:hover {
+  background-color: rgba(171, 27, 27, 0.881);
+  color: white;
+}
+
+#cancelPop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancellation-container {
+  background-color: whitesmoke;
+  padding: 1rem;
+}

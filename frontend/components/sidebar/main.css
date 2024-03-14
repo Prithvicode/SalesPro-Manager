@@ -1,0 +1,145 @@
+main {
+  width: 75%;
+  background-color: lightgray;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: rgb(117, 198, 224);
+}
+.header {
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-container {
+  background-color: lightgray;
+  height: 30%;
+  border-radius: 5px;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  /* padding: 1rem; */
+}
+
+.sales-cards {
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  color: black;
+  /* background-color: orange; */
+  height: 100%;
+  width: 45%;
+  border-radius: 8px;
+}
+
+/* .sales-activities {
+  background-color: rgb(44, 158, 158);
+  height: 70%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+} */
+
+.sales-row {
+  /* background-color: brown; */
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  height: 40%;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+.cards {
+  width: 40%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
+  /* gap: 0.5rem; */
+  /* height: 70%; */
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+}
+.cards-details {
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  margin-right: 1rem;
+  background-color: aqua;
+  padding: 0.5rem;
+}
+
+#total-sales {
+  background-color: rgba(241, 179, 178, 0.895);
+}
+
+#total-profit {
+  background-color: rgb(231, 178, 99);
+}
+#total-delivery {
+  background-color: rgb(101, 201, 101);
+}
+#total-delivery {
+  background-color: rgb(101, 201, 101);
+}
+
+/*  Order Card Styles */
+.order-overview {
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  color: black;
+  /* background-color: orange; */
+  height: 100%;
+  width: 55%;
+  border-radius: 8px;
+}
+.order-row {
+  /* background-color: brown; */
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  height: 40%;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.production-container {
+  background-color: white;
+  width: 29.5%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 90%;
+}
+
+.product-row {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.prod-cards {
+  color: black;
+  width: 50%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* gap: 0.5rem; */
+  /* height: 70%; */
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+  background-color: rgb(227, 224, 224);
+  padding: 0.3rem;
+}

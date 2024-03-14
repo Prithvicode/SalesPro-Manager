@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgba(217, 212, 212, 0.775);
+  margin: 0;
+  width: 100vw;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  margin-left: 3rem;
+  justify-content: center;
+  gap: 2rem;
+  /* background-color: lightgray; */
+  color: black;
+}
+.logo {
+  height: 3rem;
+  width: 100%;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  gap: 0.3rem;
+  color: rgba(24, 17, 120, 0.888);
+}
+
+/* .sidebar .img {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+} */
+.sidebar {
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: 100vh; /* Set to 100vh to cover the full height of the viewport */
+  width: 18%;
+  padding: 10px 14px;
+  overflow-y: auto; /* Add this line to enable vertical scrolling */
+  position: fixed;
+  /* display: none; */
+}
+
+.sidebar li {
+  font-weight: 400;
+  height: 50px;
+  background-color: white;
+  margin-top: 5px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  transition: 0.2s ease;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sidebar li:hover {
+  background-color: lightblue;
+}
+
+.bottom-content {
+  margin-top: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+.explore {
+  margin-left: 2rem;
+}
+/* Main styel */
+main {
+  padding-left: 3rem;
+  width: 900px;
+  /* background-color: lightgray; */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: rgb(117, 198, 224);
+}
+.header {
+  color: rgb(117, 198, 224);
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-container {
+  background-color: lightgray;
+  height: 30%;
+  border-radius: 5px;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  /* padding: 1rem; */
+}
+
+.sales-cards {
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  color: black;
+  /* background-color: orange; */
+  height: 100%;
+  width: 50%;
+  border-radius: 8px;
+}
+
+/* .sales-activities {
+  background-color: rgb(44, 158, 158);
+  height: 70%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+} */
+
+.sales-row {
+  /* background-color: brown; */
+  /* background-color: blue; */
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  height: 40%;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+.cards {
+  /* background-color: red; */
+  width: 50%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: start;
+  /* gap: 0.5rem; */
+  /* height: 70%; */
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+}
+.cards-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color: blue; */
+}
+
+.card-title {
+  margin-bottom: 0.3rem; /* Adjust as needed */
+}
+
+.card-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  margin-right: 1rem;
+  /* background-color: aqua; */
+  padding: 0.5rem;
+}
+
+#total-sales {
+  background-color: rgba(241, 179, 178, 0.895);
+}
+
+#total-profit {
+  background-color: rgb(231, 178, 99);
+}
+#total-delivery {
+  background-color: rgb(101, 201, 101);
+}
+#total-delivery {
+  background-color: rgb(101, 201, 101);
+}
+
+/*  Order Card Styles */
+.order-overview {
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  color: black;
+  /* background-color: orange; */
+  height: 100%;
+  width: 55%;
+  border-radius: 8px;
+}
+.order-row {
+  /* background-color: brown; */
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  height: 40%;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.production-container {
+  background-color: white;
+  width: 29.5%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 90%;
+}
+
+.product-row {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.prod-cards {
+  color: black;
+  width: 50%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* gap: 0.5rem; */
+  /* height: 70%; */
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+  background-color: rgb(227, 224, 224);
+  padding: 0.3rem;
+}
+
+/* Tables */
+/* table.css */
+
+/* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+} */
+
+main {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+section {
+  text-align: center;
+}
+
+h3 {
+  margin-left: 1rem;
+}

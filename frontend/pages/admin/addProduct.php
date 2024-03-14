@@ -10,18 +10,67 @@ if( $_SESSION['UserType'] != 'Admin'){
 }
 else{
 
-
+// Base URL for images
+$BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
 
 ?>
-    <?php 
-   include '../../components/adminSidebarNav.php';
-   ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products </title>
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+    <link rel="stylesheet" href='../../components/popups/popup.css' />
+    <link rel="stylesheet" href='../../components/tables/table.css' />
+    <link rel="stylesheet" href='../../components/forms/addprod.css' />
+   
+</head>
+ 
+<body>
+<div class="container">
+<?php
+   include '../../components/sidebar/adminSidebar.php'; 
+  
+?>
+<main>
+      <div class="header">
+        <h2>Products</h2>
+        <!-- <div class="date">
+          <input type="date" />
+        </div> -->
+      </div>
+
+      <div class="product-container">
+        <button id ='addProdBtn'>&plus; Add Product</button>
+       <table id ='productTableBody'>
+        <thead>
+        <th>S.No</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>SKU</th>
+        <th>Cost Price</th>
+        <th>Selling Price</th>
+        <th colspan= 2>Actions</th>
+        </thead>
+
+        <?php
+
+
+        ?>
 
 
 
-    <h2>Add Product</h2>
-    <form 
+
+       </table>
+
+      </div>
+   
+   
+    <div class="modelPopup">
+
+      <form 
     action="http://localhost/InventoryAndSalesManagement/backend/functions/product/createProduct.php" 
     method="post" 
     enctype="multipart/form-data">
@@ -55,34 +104,40 @@ else{
 
         <input type="submit" value="Submit">
     </form>
-    <!-- <script>
-          document.getElementById('addProductForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            // Create a FormData object to store form data
-            var formData = new FormData(this);
+  </div>
+   <script>
+    const productTableBody = document.getElementById('productTableBody');
 
-            // Make a fetch request to your server
-            fetch('your_server_url_here', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-                // You can handle success response here, e.g., show a success message
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // You can handle error response here, e.g., show an error message
-            });
+    fetch('http://localhost/InventoryAndSalesManagement/backend/functions/product/getProduct.php', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(products => {
+        products.forEach((product, index) => {
+            const row = document.createElement("tr")
+            row.innerHTML = `
+              
+                    <td>${index + 1}</td>
+                    <td>${product.ProductName}</td>
+                    <td>${product.Description}</td>
+                    <td>${product.SKU}</td>
+                    <td>${product.CostPrice}</td>
+                    <td>${product.SellingPrice}</td>
+                    <td><a href= "#" class ='editBtn'> Edit </a></td>
+                    <td><a href= "#" class ='deleteBtn'>Delete</a></td>
+
+                    
+               
+            `;
+
+            productTableBody.appendChild(row);
+            
         });
-    </script> -->
+    });
+</script>
 </body>
 </html>
 

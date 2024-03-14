@@ -67,15 +67,48 @@ if($result){
             // echo $currentDeliveryStatus;
         }?>
 
+<head>
+        <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
+        <link rel="stylesheet" href='../../components/popups/popup.css' />
+             <link rel="stylesheet" href='statusStyle.css' />
+
+</head>
 <!-- show order and custoemr Details -->
 
-<p>Order ID:<?php echo $orderDetails['OrderID']?><p>
-<p>Customer Name: <?php echo $orderDetails['CustomerName']?><p>
-<p>Phone Number: <?php echo $orderDetails['phoneNumber']?><p>
-<p>Delivery City: <?php echo $orderDetails['deliveryCity']?><p>
-<p>Delivery Address: <?php echo $orderDetails['deliveryAddress']?><p>
-<p>Delivery Instruction:<?php echo $orderDetails['deliveryInstructions']?> <p>
-<p>Delivery Date: <?php echo $orderDetails['DeliveryDate']?><p>
+<div id="detail-container">
+<h3>Order Details:</h3>
+
+<table id ='form-table' style="border-collapse: collapse;">
+  <tr>
+        <td><label for="orderID">Order ID:</label></td>
+        <td><?php echo $orderDetails['OrderID']?></td>
+    </tr>
+    <tr>
+        <td><label for="customerName">Customer Name:</label></td>
+        <td><?php echo $orderDetails['CustomerName']?></td>
+    </tr>
+    <tr>
+        <td><label for="phoneNumber">Phone Number:</label></td>
+        <td><?php echo $orderDetails['phoneNumber']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryCity">Delivery City:</label></td>
+        <td><?php echo $orderDetails['deliveryCity']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryAddress">Delivery Address:</label></td>
+        <td><?php echo $orderDetails['deliveryAddress']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryInstructions">Delivery Instruction:</label></td>
+        <td><?php echo $orderDetails['deliveryInstructions']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryDate">Delivery Date:</label></td>
+        <td><?php echo $orderDetails['DeliveryDate']?></td>
+    </tr>
+</table>
+
 <br>
 
 
@@ -111,7 +144,7 @@ if($result){
             <td>Rs. <?php echo $totalAmount?></td>
         </tr>
 </table>
-
+</div>
 <?php 
  // according to user Type the verification status button are shown.
  // Admin : verification status button
@@ -144,10 +177,11 @@ if($result){
                             const closeBtn = document.getElementById('close');
                             const proceedBtn = document.getElementById('cancel-proceed');
 
-
+                            const orderDetailContainer = document.getElementById("detail-container");
                             // hidden
                             cancelContainer.style.display ='none';
                             cancelBtn.addEventListener("click", function(){
+                                orderDetailContainer.style.display = 'none';
                                 cancelContainer.style.display ='block';
                             })
 
@@ -156,6 +190,7 @@ if($result){
                             })
                             closeBtn.addEventListener("click", function(){
                            cancelContainer.style.display ='none';
+                           orderDetailContainer.style.display = 'block';
 
                             })
 

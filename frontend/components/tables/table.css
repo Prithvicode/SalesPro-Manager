@@ -1,0 +1,144 @@
+/* table.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+/* 
+main {
+  max-width: 800px;
+  margin: 20px auto;
+} */
+
+section {
+  text-align: center;
+}
+
+/* h1 {
+  color: #333;
+} */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: whitesmoke;
+  color: black;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #359e89;
+  color: white;
+}
+
+/* Optional: Add hover effect to rows */
+tr:hover {
+  background-color: #afa9a9;
+}
+
+/* Add these styles to your existing CSS */
+
+/* Style the "Update" and "Delete" links */
+td a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style the "Update" link */
+td a.update {
+  background-color: #4caf50; /* Green color */
+}
+
+/* Style the "Delete" link */
+td a.delete {
+  background-color: #f44336; /* Red color */
+}
+
+/* Hover effect for the links */
+td a:hover {
+  background-color: #333; /* Dark background on hover */
+}
+
+td a.showOrderDetails {
+  color: black;
+  background-color: lightseagreen;
+}
+
+td a.showOrderDetails:hover {
+  color: white;
+}
+
+/* Style for i frames */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#closeFrame {
+  margin-right: 1rem;
+  color: #359e89;
+  float: right;
+  font-size: 45px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#closeFrame:hover,
+#closeFrame:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*  Status of the datas */
+
+.pending-row {
+  color: blue;
+}

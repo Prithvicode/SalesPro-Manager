@@ -1,31 +1,37 @@
-.hero {
-  display: flex;
+th {
+  background-color: rgb(30, 107, 215);
 }
 
-main {
-  width: 100%;
-  height: 100%;
-}
-.orders-containers {
-  /* background-color: blue; */
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  gap: 5rem;
-}
-#orderTable {
+h2 {
+  color: rgb(30, 107, 215);
 }
 
-#orderDetailFrame {
-  display: flex;
-  flex-direction: column;
-  /* background-color: blue; */
-  width: 300px;
-  height: auto;
+td a.showOrderDetails {
+  background-color: rgb(26, 73, 139);
+  color: white;
 }
 
-#iframeContent {
-  width: 500px;
-  height: 550px;
+td a.showOrderDetails:hover {
+  background-color: rgb(19, 105, 225);
+  color: white;
+}
+
+#closeFrame {
+  color: rgb(19, 105, 225);
+}
+
+h1 {
+  color: rgb(19, 105, 225);
+}
+
+/*  Table to shown in shown Details read. */
+
+#form-table {
+  width: 60%;
+  background-color: white;
+}
+#form-table td {
+  padding: 5px;
+  background-color: whitesmoke;
+  border-bottom: none;
 }

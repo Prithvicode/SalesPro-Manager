@@ -19,54 +19,44 @@ if($_SESSION['UserType'] != 'Customer'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Status</title>
-    <link rel="stylesheet" href="statusStyle.css" />
-    <link rel="stylesheet" href="customerStyle.css" />
- 
+    <link rel="stylesheet" href='../../components/tables/table.css' />
+     <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+     <link rel="stylesheet" href='statusStyle.css' />
+  
+     
+ <style>
+    
+.frame-wrapper{
+    /* background-color:aqua; */
+    height:90%;
+    display:flex;
+    /* flex-direction:column; */
+    /* top:10; */
+    align-items: center;
+    justify-content:center;
+}
+ </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-logo">Order Status</div>
-        <div class="navbar-icons">
-            <div class="notification-icon">🔔</div>
-            <div class="logout-button">
-                <a href="http://localhost/InventoryAndSalesManagement/backend/functions/authentication/logout.php">Logout</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="hero">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">Menu</div>
-            <ul class="sidebar-menu">
-                <li class="sidebar-item ">
-                    <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/customer/customerDashboard.php" 
-                    class="sidebar-link">Dashboard</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/customer/newOrder.php" 
-                    class="sidebar-link" id='newOrder'>New Order</a>
-                </li>
-                <li class="sidebar-item active">
-                    <a href="http://localhost/InventoryAndSalesManagement/frontend/pages/customer/orderStatusPage.php" class="sidebar-link">My Order Status</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Profile</a>
-                </li>
-            </ul>
-        </aside>
+   <div class="container">
+<?php
+   include '../../components/sidebar/customerSidebar.php'; 
+?>
 
         <!-- Main Content -->
-        <main class="main-content">
-            <h1>MY Orders</h1>
+        <main class="main-content" style='width:100%'>
+             <div class="header">
+        <h2>My Orders</h2>
+        
+      </div>
 
-            <div class="orders-containers">
+            <div class="table-container">
                 <table border="1" id="orderTable">
                     <tr>
                         <th>Order Date</th>
                         <th>Order Number</th>
-                        <th>Order Status</th>
+                        <th>Verification Status</th>
+                        <th>Production Status</th>
                         <th>Delivery Status</th>
                         <th>Order Details</th>
                     </tr>
@@ -77,20 +67,25 @@ if($_SESSION['UserType'] != 'Customer'){
                         <tr>
                             <?php foreach ($item as $value): ?>
                                 <td><?php echo $value; ?></td>
+                                
                             <?php endforeach; ?>
                             <td><a href="?id=<?php echo $item[1]?>" class="showOrderDetails">Show details</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
+            </div>
 
-                <div id="orderDetailFrame" style="display: none;">
-                    <!-- Close button for the iframe -->
-                    <button id="closeFrame">Close</button>
+                <div id="orderDetailFrame" class = 'modal' style="display: none;">
+                   <span id="closeFrame">&times;</span><br>
+                    <div class="frame-wrapper">
+                    <!-- <button id="closeFrame">Close</button><br> -->
 
-                    <iframe id="iframeContent">
+                    <iframe id="iframeContent" class = "modal-content">
                      
 
-                     </iframe>
+                    </iframe>
+
+                    </div>
                 </div>
             </div>
         </main>
@@ -121,10 +116,12 @@ if($_SESSION['UserType'] != 'Customer'){
     closeIframeButton.addEventListener("click", function () {
         iframeContainer.style.display = "none"; // Hide iframe container
         iframeContent.src = ""; // Reset iframe src
+        location.reload();
     });
 });
 
     </script>
+    <script src = '../../components/tables/table.js'></script>
 
 </body>
 </html>

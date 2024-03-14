@@ -59,7 +59,7 @@ function updateOrderStatus($conn, $orderId, $statusType, $statusValue){
     $result = mysqli_query($conn, $prodStartBtnSql);
 
     if ($result) {
-        $msg = $statusType . " changed to " . $statusValue;
+        $msg = "Order has been Cancelled.";
     } else {
         $msg = "Failed to update order status";
     }

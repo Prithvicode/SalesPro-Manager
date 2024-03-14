@@ -1,0 +1,24 @@
+.product-container {
+  width: 100%;
+  background-color: whitesmoke;
+  padding: 1rem;
+}
+
+#addProdBtn {
+  padding: 0.5rem 0.5rem;
+  background-color: #359e89;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  float: right;
+  margin-bottom: 6px;
+}
+#addProdBtn:hover {
+  background-color: #1d5a4e;
+}
+#editBtn {
+}
+
+#deleteBtn {
+}

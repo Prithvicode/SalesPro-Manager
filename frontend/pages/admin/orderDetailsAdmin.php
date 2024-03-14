@@ -68,7 +68,10 @@ function getProductNameFromID($conn, $prdId){
 }
 ?>
 
-
+<head>
+        <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
+        <link rel="stylesheet" href='../../components/popups/popup.css' />
+</head>
 <!-- show order and custoemr Details -->
 
 <p>Order ID:<?php echo $orderDetails['OrderID']?><p>
@@ -122,8 +125,31 @@ function getProductNameFromID($conn, $prdId){
                 case 'Admin':
                     ?> 
                     <div>
-                        <button id='verify'>Verify Order</button>
+                        <button id='verify-pop' onclick="verifyPop()">Verify Order</button>
+                        <button id='cancel'>Cancel Order</button>
                     </div>
+                    <!-- To show the confirmation -->
+                    <div class="modelPopup" id ='verifyPop'>
+                            <div class="confirm-verify">
+                                <span>Accept the Order and Send it Production</span>
+                                <button class = 'popBtn' id='verify'>Yes</button>
+                                <button  class = 'popBtn'id ='cancelPopup'>Cancel</button>
+                            </div>  
+                    </div>
+                     <div class="modelPopup" id= 'cancelPop'>
+                            <div class="cancellation-container" id ='cancel-container'>
+                            <form action="" method ='POST'>
+                                Today:<input type="date" id ='todayDate' disabled><br>
+                                Cancellation Reason: <input type="text" id = 'cancel-reason' required><br>
+                              
+                                <input type="submit" id='cancel-proceed' value='Proceed'>
+                                  <button id = 'close'>Close</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    
+                    
                     <?php
                     break;
 
@@ -133,6 +159,10 @@ function getProductNameFromID($conn, $prdId){
             
 ?>
 <script>
+    function verifyPop(){
+        const verifyModal = document.getElementById('verifyPop');
+        verifyModal.style.display = 'block';
+    }
     
     const verifyBtn = document.getElementById('verify');
     const orderId = <?php echo $orderId?>;
@@ -172,4 +202,71 @@ function getProductNameFromID($conn, $prdId){
                             }
                             
 
+//  Cancel Orders
+                            const cancelContainer = document.getElementById('cancel-container')
+                            const cancelBtn = document.getElementById('cancel');
+                            const updateBtn = document.getElementById('updateOrder');
+                            const closeBtn = document.getElementById('close');
+                            const proceedBtn = document.getElementById('cancel-proceed');
+                            const cancelConfirm = document.getElementById("cancelPop");
+                            cancelConfirm.style.display = "none";
+                             // Get today's date in the format "YYYY-MM-DD"
+                            const today = new Date().toISOString().slice(0, 10);
+                            console.log(today);
+
+                            // Set the value of the input field to today's date
+                            document.getElementById('todayDate').value = today;
+
+                            cancelBtn.addEventListener("click", function(){
+                                
+                                cancelConfirm.style.display = "flex";
+                              
+
+                            })
+                            closeBtn.addEventListener("click",function(){
+                                cancelConfirm.style.display ='none';
+                            })
+   
+// Proceed Button:
+                        proceedBtn.addEventListener("click", function(){
+                            const orderID = <?php echo $orderId?>;
+                            const cancelDate = document.getElementById('todayDate').value;
+                            const cancelReason = document.getElementById('cancel-reason').value;
+                            const cancelDetails ={
+                                orderID : orderID,
+                                cancelDate: cancelDate,
+                                reason : cancelReason
+                            }
+                            console.log(cancelDetails);
+
+                           const url = "http://localhost/InventoryAndSalesManagement/backend/functions/orders/cancelOrder.php"
+                              // Options for the fetch request
+                                const options = {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json' // Specify content type as JSON
+                                    },
+                                    body: JSON.stringify(cancelDetails) // Convert JavaScript object to JSON string
+                                };
+                            
+                                // Send the POST request
+                                fetch(url, options)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.json(); // Parse the JSON response
+                                    })
+                                    .then(data => {
+                                        console.log('Response:', data);
+                                        alert(data.message); 
+                                        setTimeout(function() { window.location.reload()},500);
+
+                                    })
+                                    .catch(error => {
+                                        console.error('There was a problem with the fetch operation:', error);
+                                        // Handle errors
+                                    });
+                           
+                        });
 </script>

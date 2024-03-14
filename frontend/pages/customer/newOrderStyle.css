@@ -1,33 +1,84 @@
 /* Only contains the form style */
-
-.hero {
-  display: flex;
+main {
+  padding-left: 7rem;
 }
-
-.order-content {
-  flex: 1;
-  padding: 20px;
-  background-color: aliceblue;
+h2 {
+  color: rgb(30, 107, 215);
 }
-
 /* Form container styles */
 .form-container {
-  width: 800px;
+  width: 100%;
   margin: 20px auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 label {
   font-weight: bold;
 }
+.form-container input {
+  align-self: center;
+}
+input:hover {
+  border: 1px solid skyblue;
+}
 
 input,
 select {
-  padding: 10px;
+  padding: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+#form-table input:focus {
+  border: 1px solid skyblue;
+}
+
+#addProductBtn {
+  padding: 0.5rem 0.5rem;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  color: white;
+  background-color: rgb(4, 85, 236);
+  border: none;
+}
+#addProductBtn:hover {
+  background-color: rgb(24, 64, 183);
+}
+
+.reduceProductBtn {
+  padding: 6px 5px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgb(219, 31, 31);
+  border: none;
+}
+.reduceProductBtn:hover {
+  background-color: rgb(159, 24, 24);
+}
+th {
+  background-color: rgb(30, 107, 215);
+}
+
+#form-table {
+  width: 60%;
+  background-color: white;
+}
+#form-table thead {
+  background-color: white;
+}
+#form-table tr {
+  background-color: white;
+}
+#form-table input:focus {
+  border-color: blue;
+}
+#form-table td {
+  padding: 5px;
+  background-color: whitesmoke;
+  border-bottom: none;
 }

@@ -6,11 +6,16 @@ header('location: http://localhost/InventoryAndSalesManagement/frontend/pages/lo
 
 if( $_SESSION['UserType'] != 'Admin'){
     echo "Access Denied";
-
 }
 else {
 
+// Base URL for images
+$BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
+
+
+// Dynamics Values
+$totalSales = '';
 
 ?>
 
@@ -20,90 +25,249 @@ else {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../../layouts/adminDashboardStyle.css" />
-    
-   
-  <?php 
-   include '../../components/adminNav.php';
-   
-  
-   ?>
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+</head>
 
-   <div class="hero">
-
+<body>
+<div class="container">
 <?php
-   include '../../components/adminSidebar.php';
+   include '../../components/sidebar/adminSidebar.php'; 
 ?>
-
-  <!-- Main Content -->
-    <main class="main-content">
-      <div class="summary-row">
-        <p >Today's Data</p>
-            <div class="card-row">
-            <div class="card totalSales">
-              <p class ='sum-head'>Total Sales</p>
-              <p>Rs. 50000000</p>
-              <p>-------------------</p>
-            </div>
-            <div class="card pendingOrders">
-              <p class ='sum-head'>Pending Order</p>
-              <p>50</p>
-              <p>-------------------</p>
-            </div>
-            <div class="card deliveredOrders">
-              <p class ='sum-head'>Delivered Order</p>
-              <p>50</p>
-              <p>-------------------</p>
-            </div>
-
-            <div class="card deliveredOrders">
-              <p class ='sum-head'>Delivered Order</p>
-              <p>50</p>
-              <p>-------------------</p>
-            </div>
-            </div>
+<!-- Main section -->
+    <main>
+      <div class="header">
+        <h1>Dashboard</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
       </div>
 
+      <div class="card-container">
+        <!-- <h3>Today's Data</h3> -->
+        <!-- Sales -->
+        <div class="sales-cards">
+          <h3>Sales Overview</h3>
+          <!-- <div class="sales-activities"> -->
+          <!-- sales card row 1 -->
+          <div class="sales-row">
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/sales.svg"
+                id="total-sales"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/profit.svg"
+                id="total-profit"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+          </div>
 
-      <div class="summary-row">
-        <p >Today's Data</p>
-            <div class="card-row">
-            <div class="card totalSales">
-              <p class ='sum-head'>Total Sales</p>
-              <p>Rs. 50000000</p>
-              <p>-------------------</p>
+          <!-- sales card row 1 -->
+          <div class="sales-row">
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/delivery.svg"
+                id="total-sales"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
             </div>
-            <div class="card pendingOrders">
-              <p class ='sum-head'>Pending Order</p>
-              <p>50</p>
-              <p>-------------------</p>
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
             </div>
-            <div class="card deliveredOrders">
-              <p class ='sum-head'>Delivered Order</p>
-              <p>50</p>
-              <p>-------------------</p>
-            </div>
+          </div>
+          <!-- </div> -->
+        </div>
 
-            <div class="card deliveredOrders">
-              <p class ='sum-head'>Delivered Order</p>
-              <p>50</p>
-              <p>-------------------</p>
+        <!-- Orders Overview -->
+        <div class="order-overview">
+          <h3>Orders-overview</h3>
+          <div class="order-row">
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/sales.svg"
+                id="total-sales"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
             </div>
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/profit.svg"
+                id="total-profit"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
             </div>
+          </div>
+
+          <!-- sales card row 1 -->
+          <div class="order-row">
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/delivery.svg"
+                id="total-sales"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Pending Orders:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+            <div class="cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- No of users -->
+        <!-- Top sales tables? -->
       </div>
+      <!-- Production Overview -->
+      <div class="card-container">
+        <div class="production-container">
+          <h3>Production</h3>
+          <div class="product-row">
+            <div class="prod-cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
 
+            <!-- To be produced -->
+            <div class="prod-cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="production-container">
+          <h3>Production</h3>
+          <div class="product-row">
+            <div class="prod-cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
 
+            <!-- To be produced -->
+            <div class="prod-cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="production-container">
+          <h3>Production</h3>
+          <div class="product-row">
+            <div class="prod-cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
 
-    
-
-      
+            <!-- To be produced -->
+            <div class="prod-cards">
+              <img
+                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                id="total-delivery"
+                class="card-logo"
+                alt=""
+              />
+              <div class="cards-details">
+                <span class="card-title">Total Sales:</span>
+                <h3>4000</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-   </div>
-   
-    
-  
-    </script>
+
+  </div>
   </body>
 </html>
 <?php

@@ -10,21 +10,30 @@ document.addEventListener("DOMContentLoaded", function () {
   submitOrderBtn.disabled = true;
 
   addProductBtn.addEventListener("click", function () {
-    const productItem = document.createElement("div");
+    const productItem = document.createElement("tr");
     productItem.classList.add("product-item");
 
     productItem.innerHTML = `
-            <label for="productName">Product Names:</label>
-            <select id="productName" name="productName"></select>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" value=0.00 readonly>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min=1 required>
-            <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount"  readonly>
-            <button type="button" class="reduceProductBtn">Remove</button>
+                <td>
+                  <select id="productName" name="productName"></select>
+                </td>
+                <td>
+                  <input type="number" id="price" name="price" value="0.00" readonly>
+                </td>
+                <td>
+                  
+                  <input type="number" id="quantity" name="quantity" min="1" required>
+                </td>
+                <td>
+                 
+                  <input type="text" id="amount" name="amount" readonly>
+                </td>
+                <td>
+                  <button type="button" class="reduceProductBtn">Remove</button>
+                </td>
         `;
-
+    //<label for="productName">Product Names:</label>
+    //  <label for="price">Price:</label>
     productList.appendChild(productItem);
 
     // Fetch Product data for drop down options
