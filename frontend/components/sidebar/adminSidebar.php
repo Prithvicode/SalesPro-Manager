@@ -56,7 +56,7 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
          <!-- Unverified orders -->
           <ul class="hidden" id="order-items">
             <li><a href="<?php echo $UNVERIFIED_ORDERS; ?>">Unverified</a></li>
-            <li><a href="<?php echo $VERIFIED_ORDERS; ?>">Verified</a></li>
+            <!-- <li><a href="<?php echo $VERIFIED_ORDERS; ?>">Verified</a></li> -->
             <!-- Add more menu items as needed -->
           </ul>
         <li class="nav-links">
@@ -73,17 +73,31 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
             <!-- Add more menu items as needed -->
           </ul>
         <li class="nav-links">
+          <a href="javascript:void(0);" onclick="toggleSubmenu('sales-items')">
+            <img src="<?php echo $BASE_URL; ?>images/staff.svg" alt="" />
+            <span>Sales</span>
+
+            <img src="<?php echo $BASE_URL; ?>images/explore.svg" style="margin-left:2.7rem"alt="" />
+          </a>
+        </li>
+        <ul class="hidden" id="sales-items">
+            <li><a href="<?php echo $UNVERIFIED_SALES; ?>">Unverified</a></li>
+            <li><a href="<?php echo $SALES_HISTORY; ?>">Sales History</a></li>
+            
+          </ul>
+        <li class="nav-links">
           <a href="<?php echo $CUSTOMERS; ?>">
             <img src="<?php echo $BASE_URL; ?>images/staff.svg" alt="" />
             <span>Staff</span>
+            
           </a>
         </li>
-        <li class="nav-links">
+        <!-- <li class="nav-links">
           <a href="<?php echo $CUSTOMERS; ?>">
             <img src="<?php echo $BASE_URL; ?>images/customer.svg" alt="" />
             <span>Customer</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-links">
           <a href="<?php echo $SALES_HISTORY; ?>">
             <img src="<?php echo $BASE_URL; ?>images/report.svg" alt="" />

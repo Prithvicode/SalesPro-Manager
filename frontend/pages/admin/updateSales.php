@@ -59,48 +59,102 @@ if(isset($_POST['saleUpdate'])){
     if($result){
         echo "<script>alert('Sales successfully Updated');</script>"; 
             // Add a delay of 3 seconds (3000 milliseconds) before redirecting
-    echo "<script>setTimeout(function() { window.location.href = 'http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/updatedSalesDetails.php?id=$orderId'; }, 500);</script>";
+    echo "<script>setTimeout(function() { window.location.href = 'http://localhost/InventoryAndSalesManagement/frontend/pages/admin/updateSales.php?id=$orderId'; }, 500);</script>";
 
     } else {
         echo "<script>alert('Error: Failed to insert sales');</script>";
     }
 }else{
 ?>
-<table border = 1 id="customerDetail-table">
-    <tr>
-    <th>Order ID</th>
-    <th>Customer Name</th>
-    <th>Phone Number</th>
-    <th>Address</th>
-</tr>
-  <tr>
-     <?php 
+<?php 
+     $orderDetails = array(   
+                'OrderID' => "",
+                'CustomerName' => "",
+                'OrderDate' =>"" ,
+                'VerificationStatus' => "",
+                'deliveryCity' => "",
+                'deliveryAddress' =>"" ,
+                'deliveryInstructions' => "",
+                'phoneNumber' => "",
+                'DeliveryDate' => ""
+    );
+
+   
      // fetch customer details 
-       $getCustomerSql = " SELECT users.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name,
-                        orders.DeliveryStatus
-                        FROM users
-                        JOIN orders ON orders.CustomerID = users.UserID
-                        where orderID = $orderId";  
+       $allOrderDetailSql = "SELECT orders.*, 
+                           CONCAT(users.FirstName, ' ', users.LastName) AS Name,
+                           deliveryDetails.phoneNumber,
+                           deliveryDetails.deliveryCity,
+                           deliveryDetails.deliveryAddress,
+                           deliveryDetails.deliveryInstructions
+                    FROM orders
+                    JOIN users ON orders.CustomerID = users.UserID
+                    JOIN deliveryDetails ON orders.OrderID = deliveryDetails.OrderID
+                    WHERE orders.OrderID = '$orderId'";
 
-        $result = mysqli_query($conn, $getCustomerSql);
-        if($result){
-            while($row = mysqli_fetch_assoc($result)){
-                ?>
-              
-                <td><?php echo $orderId?></td>
-                <td><?php echo $row['Name']?></td>
-                <td><?php echo $row['PhoneNumber']?></td>
-                <td><?php echo $row['Address']?></td>
-
-                
-             <?php  
-             // set Delivery Status;
-             $currentDeliveryStatus = $row['DeliveryStatus'];
+$result = mysqli_query($conn, $allOrderDetailSql);
+if($result){
+    while($row = mysqli_fetch_assoc($result)){
+             $orderDetails = array(   
+                'OrderID' => $row['OrderID'],
+                'CustomerName' => $row['Name'],
+                'OrderDate' => $row['OrderDate'],
+                'VerificationStatus' => $row['VerificationStatus'],
+                'deliveryCity' => $row['deliveryCity'],
+                'deliveryAddress' => $row['deliveryAddress'],
+                'deliveryInstructions' => $row['deliveryInstructions'],
+                'phoneNumber' => $row['phoneNumber'],
+                'DeliveryDate' => $row['DeliveryDate']
+    );
+                $currentDeliveryStatus = $row['DeliveryStatus'];
             }
+         
+            // echo "<script> console.log('" . $currentDeliveryStatus ."') </script>" ;
+            // echo $currentDeliveryStatus;
         }?>
-</tr>
+        <!-- show order and custoemr Details -->
+<head>
+        <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
+        <link rel="stylesheet" href='../../components/popups/popup.css' />
+        <!-- <link rel="stylesheet" href='statusStyle.css' /> -->
 
+</head>
+<!-- show order and custoemr Details -->
+
+<div id="detail-container">
+<h3>Order Details:</h3>
+<table id ='form-table' style="border-collapse: collapse;">
+  <tr>
+        <td><label for="orderID">Order ID:</label></td>
+        <td><?php echo $orderDetails['OrderID']?></td>
+    </tr>
+    <tr>
+        <td><label for="customerName">Customer Name:</label></td>
+        <td><?php echo $orderDetails['CustomerName']?></td>
+    </tr>
+    <tr>
+        <td><label for="phoneNumber">Phone Number:</label></td>
+        <td><?php echo $orderDetails['phoneNumber']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryCity">Delivery City:</label></td>
+        <td><?php echo $orderDetails['deliveryCity']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryAddress">Delivery Address:</label></td>
+        <td><?php echo $orderDetails['deliveryAddress']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryInstructions">Delivery Instruction:</label></td>
+        <td><?php echo $orderDetails['deliveryInstructions']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryDate">Delivery Date:</label></td>
+        <td><?php echo $orderDetails['DeliveryDate']?></td>
+    </tr>
 </table>
+<br>
+
 
 <br>
 <!-- Show the order item details table -->
@@ -156,7 +210,7 @@ if(isset($_POST['saleUpdate'])){
     <br>
 <div class="form-container" id='form-container' >
 <form 
-action="http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/updatedSalesDetails.php?id=<?php echo $orderId ?>"
+action="http://localhost/InventoryAndSalesManagement/frontend/pages/admin/updateSales.php?id=<?php echo $orderId ?>"
 method = "POST">
     
     <label for="">Date</label>

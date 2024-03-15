@@ -21,7 +21,7 @@ else {
     // include '../../../backend/functions/orders/getOrderItems.php';
 
     //  Dynamics Datas:
-   $customerTotalData = getCustomerDashboardData($conn,$customerId); 
+$customerTotalData = getCustomerDashboardData($conn,$customerId); 
 $TOTAL_ORDERS = $customerTotalData['total_orders'];
 $PENDING_ORDERS = $customerTotalData['pending_orders'];
 $VERIFIED = $customerTotalData['verified_orders'];

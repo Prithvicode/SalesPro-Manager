@@ -10,6 +10,8 @@ if( $_SESSION['UserType'] != 'ProductionStaff'){
 }
 else {
     
+$BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
+
 include '../../../backend/db/dbconfig.php';
 
 
@@ -43,7 +45,7 @@ $requestedOrders = [];
     }
 ?>
 <head>
-    <style>
+    <!-- <style>
         .hero{
 display:flex;
         }
@@ -73,33 +75,36 @@ display:flex;
 #iframeContent {
   width: 500px;
   height: auto;
-}
+} -->
 </style>
+ <title>Production Started</title>
+<link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+    <link rel="stylesheet" href='../../components/tables/table.css' />
+    <link rel="stylesheet" href='productionStyle.css' />
 </head>
-    <?php
-   include '../../components/prodNav.php';
+  <body>
+  
+<div class="container">
+  <?php
+   include '../../components/sidebar/prodStaffSidebar.php'; 
+?>
+
   
 
-    ?>
+<main>
+    <div class="header">
+        <h2>Production Started</h2>
+    </div>
 
-<div class="hero">
-
-
- <?php
-  include '../../components/prodSidebar.php';
-?>
-<div class="orders-containers">
     <div class="table-container">
 
-
-   
 <table border="1">
       
             <tr>
                 <th>Order ID</th>
                 <th>Customer Name</th>
                 <th>Order Date</th>
-                <th>Verification Status</th>
+                <!-- <th>Verification Status</th> -->
                 <th>Production Status</th>
                 <th>Delivery Date</th>
                 <th>Order Details</th>
@@ -111,7 +116,6 @@ display:flex;
                     <td><?php echo $order['OrderID']; ?></td>
                     <td><?php echo $order['CustomerName']; ?></td>
                     <td><?php echo $order['OrderDate']; ?></td>
-                    <td><?php echo $order['VerificationStatus']; ?></td>
                     <td><?php echo $order['ProductionStatus']; ?></td>
                     <td><?php echo $order['DeliveryDate']; ?></td>
                      <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td>
@@ -120,17 +124,17 @@ display:flex;
      
     </table>
  </div>
-     <div id="orderDetailFrame" style="display: none;">
+     <div id="orderDetailFrame" class = 'modal' style="display: none;">
                     <!-- Close button for the iframe -->
-                    <button id="closeFrame">Close</button>
-
-                    <iframe id="iframeContent">
+                     <span id="closeFrame">&times;</span><br>
+ <div class="frame-wrapper">
+                    <iframe id="iframeContent" class = "modal-content">
                      
-
+ </div>
                     </iframe>
                 </div>
             </div>
-</div>
+            </main>
 <script>
       document.addEventListener("DOMContentLoaded", function () {
     const showOrderDetailsLinks = document.querySelectorAll(".showOrderDetails");
@@ -148,7 +152,7 @@ display:flex;
             
             // Set iframe source dynamically based on the order ID
            
-            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/customer/orderItemDetails.php?id=${orderId}`;
+            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/productionStaff/orderDetail.php?id=${orderId}&start=yes`;
             iframeContainer.style.display = "block"; // Show iframe container
         });
     });

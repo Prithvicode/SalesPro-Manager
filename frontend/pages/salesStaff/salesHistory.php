@@ -11,6 +11,7 @@ if( $_SESSION['UserType'] != 'SalesStaff'){
 else {
     
 include '../../../backend/db/dbconfig.php';
+$BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
 
 $requestedOrders = [];
@@ -43,58 +44,39 @@ $requestedOrders = [];
     }
 ?>
 <head>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales History</title>
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+    <link rel="stylesheet" href='../../components/tables/table.css' />
+    <!-- <link rel="stylesheet" href='productionStyle.css' /> -->
+    
     <style>
-        *{
-            margin:0;
-            padding:0;
-        }
-        .hero{
-display:flex;
-        }
-    
-    
-.orders-containers {
-  /* background-color: blue; */
-  width: 100%;
-  height: auto;
+.frame-wrapper {
+  /* background-color:aqua; */
+  height: 90%;
   display: flex;
-  justify-content: flex-start;
-  gap: 3rem;
-}
-#orderTable {
-    height:auto;
-    width:auto;
+  /* flex-direction:column; */
+  /* top:10; */
+  align-items: center;
+  justify-content: center;
 }
 
-#orderDetailFrame {
-  display: flex;
-  flex-direction: column;
-  /* background-color: blue; */
-  width: 400px;
-  height: auto;
-}
-
-#iframeContent {
-  width: auto;
-  height: 500px;
-}
-</style>
+    </style>
 </head>
-    <?php
-   include '../../components/salesNav.php';
-  
-
-    ?>
- <h1>Sales History</h1>
-<div class="hero">
-
-
- <?php
-  include '../../components/salesSidebar.php';
+   <body>
+     
+<div class="container">
+  <?php
+   include '../../components/sidebar/salesStaffSidebar.php'; 
 ?>
+<main>
+    <div class="header">
+        <h2> Sales History</h2>
+    </div>
 
-<div class="orders-containers">
-   
+    <div class="table-container">
+
     <div class="table-container">
 
 
@@ -105,21 +87,19 @@ display:flex;
                 <th>Order ID</th>
                 <th>Customer Name</th>
                 <th>Order Date</th>
-                <th>Verification Status</th>
-                <th>Production Status</th>
+                <!-- <th>Verification Status</th>
+                <th>Production Status</th> -->
                 <th>Delivery Status</th>
                 <th>Delivery Date</th>
                 <th>Order Details</th>
             </tr>
-  
+
       
             <?php foreach ($requestedOrders as $order): ?>
                 <tr>
                     <td><?php echo $order['OrderID']; ?></td>
                     <td><?php echo $order['CustomerName']; ?></td>
                     <td><?php echo $order['OrderDate']; ?></td>
-                    <td><?php echo $order['VerificationStatus']; ?></td>
-                    <td><?php echo $order['ProductionStatus']; ?></td>
                     <td><?php echo $order['DeliveryStatus']; ?></td>
                     <td><?php echo $order['DeliveryDate']; ?></td>
                      <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td>
@@ -128,17 +108,18 @@ display:flex;
      
     </table>
  </div>
-     <div id="orderDetailFrame" style="display: none;">
+    <div id="orderDetailFrame" class = 'modal' style="display: none;">
                     <!-- Close button for the iframe -->
-                    <button id="closeFrame">Close</button>
-
-                    <iframe id="iframeContent">
+                     <span id="closeFrame">&times;</span><br>
+            <div class="frame-wrapper">
+                    <iframe id="iframeContent" class = "modal-content">
                      
-
                     </iframe>
+            </div>
                 </div>
             </div>
-</div>
+            </main>
+    </div>
 <script>
       document.addEventListener("DOMContentLoaded", function () {
     const showOrderDetailsLinks = document.querySelectorAll(".showOrderDetails");

@@ -141,3 +141,13 @@ td a.showOrderDetails:hover {
   border-radius: 5px;
   padding: 1rem 0rem 0rem 0rem;
 }
+
+#form-table {
+  width: 60%;
+  background-color: white;
+}
+#form-table td {
+  padding: 5px;
+  background-color: whitesmoke;
+  border-bottom: none;
+}

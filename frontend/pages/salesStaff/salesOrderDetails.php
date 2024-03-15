@@ -38,12 +38,12 @@ if(isset($_POST['saleEntry'])){
     $salesDate = $_POST['salesDate'];
     $totalAmount = $_POST['totalAmount'];
     $paymentType = $_POST['paymentType'];
-    $moneyReceived = $_POST['moneyReceived'];
+    // $moneyReceived = $_POST['moneyReceived'];
     $profitMade = $_POST['profitMade'];
 
     // Insert sales details into database
-    $insertSalesSql = "INSERT INTO sales (OrderID, SalesStaffID, SalesTimestamp, MoneyReceived, TotalAmount, ProfitMade, PaymentType) 
-                       VALUES ('$orderId', '$salesStaffId', '$salesDate', '$moneyReceived', '$totalAmount', '$profitMade', '$paymentType')";
+    $insertSalesSql = "INSERT INTO sales (OrderID, SalesStaffID, SalesTimestamp, TotalAmount, ProfitMade, PaymentType) 
+                       VALUES ('$orderId', '$salesStaffId', '$salesDate', '$totalAmount', '$profitMade', '$paymentType')";
     $result = mysqli_query($conn, $insertSalesSql);
     
 
@@ -113,14 +113,46 @@ if($result){
         }?>
 
 <!-- show order and custoemr Details -->
+<head>
+        <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
+        <link rel="stylesheet" href='../../components/popups/popup.css' />
+        <!-- <link rel="stylesheet" href='statusStyle.css' /> -->
 
-<p>Order ID:<?php echo $orderDetails['OrderID']?><p>
-<p>Customer Name: <?php echo $orderDetails['CustomerName']?><p>
-<p>Phone Number: <?php echo $orderDetails['phoneNumber']?><p>
-<p>Delivery City: <?php echo $orderDetails['deliveryCity']?><p>
-<p>Delivery Address: <?php echo $orderDetails['deliveryAddress']?><p>
-<p>Delivery Instruction:<?php echo $orderDetails['deliveryInstructions']?> <p>
-<p>Delivery Date: <?php echo $orderDetails['DeliveryDate']?><p>
+</head>
+<!-- show order and custoemr Details -->
+
+<div id="detail-container">
+<h3>Order Details:</h3>
+<table id ='form-table' style="border-collapse: collapse;">
+  <tr>
+        <td><label for="orderID">Order ID:</label></td>
+        <td><?php echo $orderDetails['OrderID']?></td>
+    </tr>
+    <tr>
+        <td><label for="customerName">Customer Name:</label></td>
+        <td><?php echo $orderDetails['CustomerName']?></td>
+    </tr>
+    <tr>
+        <td><label for="phoneNumber">Phone Number:</label></td>
+        <td><?php echo $orderDetails['phoneNumber']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryCity">Delivery City:</label></td>
+        <td><?php echo $orderDetails['deliveryCity']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryAddress">Delivery Address:</label></td>
+        <td><?php echo $orderDetails['deliveryAddress']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryInstructions">Delivery Instruction:</label></td>
+        <td><?php echo $orderDetails['deliveryInstructions']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryDate">Delivery Date:</label></td>
+        <td><?php echo $orderDetails['DeliveryDate']?></td>
+    </tr>
+</table>
 <br>
 <!-- Show the order item details table -->
 <table border="1">
@@ -161,6 +193,7 @@ if($result){
             <td>Rs. <?php echo $totalAmount?></td>
         </tr>
 </table>
+    </div>
 <!-- Form to update and enter sales Status after delivery. -->
 <br><br>
 <label for="deliveryStatus">Delivery Status: </label>
@@ -191,11 +224,11 @@ readonly><br>
     </select><br>
 
 
-<label for="moneyReceived">Money Received:</label>
+<!-- <label for="moneyReceived">Money Received:</label>
     <select name="moneyReceived" id="moneyReceived">
         <option value="Yes" selected>Yes</option>
         <option value="No">No</option>
-    </select><br>
+    </select><br> -->
 
 <label for="profitMade">Profit Made: </label>
 <input type="text"  

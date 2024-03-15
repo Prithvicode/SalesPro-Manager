@@ -72,7 +72,7 @@ $requestedOrders = [];
  <?php
 //  include '../../components/adminSidebar.php';
 ?>
-<div class ='main'>
+<main>
     <div class="header">
         <h2>Unverified Orders</h2>
     </div>
@@ -121,7 +121,7 @@ $requestedOrders = [];
                     </div>
                     
                 </div>
-            </div>
+            </main>
 </div>
 
 <script>

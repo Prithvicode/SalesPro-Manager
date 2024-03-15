@@ -38,49 +38,44 @@ $requestedOrders = [];
     }
 ?>
 <head>
+    <link rel="stylesheet" href='../../components/tables/table.css' />
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />    
     <style>
-        .hero{
-display:flex;
-        }
-    
-    
-    .orders-containers {
-  /* background-color: blue; */
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  gap: 5rem;
-}
-#orderTable {
+ 
+
+.frame-wrapper{
+    /* background-color:aqua; */
+    height:90%;
+    display:flex;
+    /* flex-direction:column; */
+    /* top:10; */
+    align-items: center;
+    justify-content:center;
 }
 
-#orderDetailFrame {
-  display: flex;
-  flex-direction: column;
-  /* background-color: blue; */
-  width: 400px;
-  height: auto;
-}
-
-#iframeContent {
+/* #iframeContent {
   width: 500px;
   height: 600px;
-}
+} */
 </style>
 </head>
+<body>
+<div class="container">
+    
+
 <?php
-
- include '../../components/adminNav.php';
- ?>
-
-<div class="hero">
+   include '../../components/sidebar/adminSidebar.php'; 
+?>
 
 
  <?php
- include '../../components/adminSidebar.php';
+//  include '../../components/adminSidebar.php';
 ?>
-<div class="orders-containers">
+<main>
+    <div class="header">
+        <h2>Unverified Production</h2>
+    </div>
+
     <div class="table-container">
 <table border="1">
       
@@ -108,17 +103,21 @@ display:flex;
     </table>
     </div>
 
-     <div id="orderDetailFrame" style="display: none;">
-                    <!-- Close button for the iframe -->
-                    <button id="closeFrame">Close</button>
+     <div id="orderDetailFrame" class = 'modal' style="display: none;">
+                   <span id="closeFrame">&times;</span><br>
+                    <div class="frame-wrapper">
+                    <!-- <button id="closeFrame">Close</button><br> -->
 
-                    <iframe id="iframeContent">
+                    <iframe id="iframeContent" class = "modal-content">
                      
 
                     </iframe>
+
+                    </div>
                 </div>
             </div>
-</div>
+        </main>
+    </div>
 <script>
       document.addEventListener("DOMContentLoaded", function () {
     const showOrderDetailsLinks = document.querySelectorAll(".showOrderDetails");

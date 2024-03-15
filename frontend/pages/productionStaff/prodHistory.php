@@ -21,7 +21,8 @@ $requestedOrders = [];
                         FROM orders
                         JOIN users ON orders.CustomerID = users.UserID
                         WHERE orders.VerificationStatus = 'Verified'
-                        AND orders.ProductionStatus = 'Completed';
+                        AND orders.ProductionStatus = 'Completed'
+                        ORDER BY orders.OrderID DESC;
 
                         ";
 
@@ -43,52 +44,26 @@ $requestedOrders = [];
     }
 ?>
 <head>
-    <style>
-        .hero{
-display:flex;
-        }
-    
-    
-.orders-containers {
-  /* background-color: blue; */
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  gap: 5rem;
-}
-#orderTable {
-    height:auto;
-    width:auto;
-}
+      <title>Production History</title>
+<link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+    <link rel="stylesheet" href='../../components/tables/table.css' />
+    <link rel="stylesheet" href='productionStyle.css' />
 
-#orderDetailFrame {
-  display: flex;
-  flex-direction: column;
-  /* background-color: blue; */
-  width: 400px;
-  height: auto;
-}
-
-#iframeContent {
-  width: 500px;
-  height: auto;
-}
-</style>
 </head>
-    <?php
-   include '../../components/prodNav.php';
+  <body>
   
-
-    ?>
-
-<div class="hero">
-
-
- <?php
-  include '../../components/prodSidebar.php';
+<div class="container">
+  <?php
+   include '../../components/sidebar/prodStaffSidebar.php'; 
 ?>
-<div class="orders-containers">
+
+
+
+<main>
+    <div class="header">
+        <h2>Production Orders</h2>
+    </div>
+
     <div class="table-container">
 
 
@@ -99,7 +74,6 @@ display:flex;
                 <th>Order ID</th>
                 <th>Customer Name</th>
                 <th>Order Date</th>
-                <th>Verification Status</th>
                 <th>Production Status</th>
                 <th>Delivery Date</th>
                 <th>Order Details</th>
@@ -111,7 +85,6 @@ display:flex;
                     <td><?php echo $order['OrderID']; ?></td>
                     <td><?php echo $order['CustomerName']; ?></td>
                     <td><?php echo $order['OrderDate']; ?></td>
-                    <td><?php echo $order['VerificationStatus']; ?></td>
                     <td><?php echo $order['ProductionStatus']; ?></td>
                     <td><?php echo $order['DeliveryDate']; ?></td>
                      <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td>
@@ -120,17 +93,18 @@ display:flex;
      
     </table>
  </div>
-     <div id="orderDetailFrame" style="display: none;">
+     <div id="orderDetailFrame" class = 'modal' style="display: none;">
                     <!-- Close button for the iframe -->
-                    <button id="closeFrame">Close</button>
-
-                    <iframe id="iframeContent">
+                     <span id="closeFrame">&times;</span><br>
+ <div class="frame-wrapper">
+                    <iframe id="iframeContent" class = "modal-content">
                      
-
+ </div>
                     </iframe>
                 </div>
             </div>
-</div>
+            </main>
+            </div>
 <script>
       document.addEventListener("DOMContentLoaded", function () {
     const showOrderDetailsLinks = document.querySelectorAll(".showOrderDetails");
@@ -148,7 +122,7 @@ display:flex;
             
             // Set iframe source dynamically based on the order ID
            
-            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/productionStaff/orderDetail.php?id=${orderId}`;
+            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/productionStaff/orderDetail.php?id=${orderId}&start=complete`;
             iframeContainer.style.display = "block"; // Show iframe container
         });
     });
