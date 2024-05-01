@@ -1,7 +1,9 @@
 <?php
 
 include '../../db/dbconfig.php';
+session_start();
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $productName = $_POST['productName'];
 $description = $_POST['description'];
@@ -31,11 +33,11 @@ Values ('$productName',
 
 $result = mysqli_query($conn, $addProductQuery);
 if($result){
-     echo "<script>"."alert('Added successfully')"."</script>";
+    echo "Added successfully";
 }
   else{
             echo 'insert failed';
         }
 
-
+}
 ?>

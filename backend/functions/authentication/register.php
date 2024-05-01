@@ -27,7 +27,7 @@ if(isset($_POST['register'])){
 
     if(mysqli_num_rows($emailResult) > 0){
         // Email already exists.
-        header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php?msg=userExists");
+        header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php?msg=Use Already Exists. Try new email.");
     }
     else{
         if($inputPassword == $inputConfirmPass){
@@ -46,11 +46,11 @@ if(isset($_POST['register'])){
                 $resultInsert = mysqli_query($conn, $insertUserquery);
 
                 if($resultInsert){
-                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php");
+                    header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php?msg=User Created Successfully");
                 }
         }
         else{
-            header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php?msg='cpassUnmatched'");
+            header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php?msg=Password and Confirm Password Doesnt Match");
 
         }
     }

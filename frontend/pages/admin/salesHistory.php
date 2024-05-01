@@ -4,27 +4,28 @@ if(!isset($_SESSION['UserID'])){
 header('location: http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php');
 }
 
-if( $_SESSION['UserType'] != 'ProductionStaff'){
+if( $_SESSION['UserType'] != 'Admin'){
     echo "Access Denied";
 
 }
 else {
     
 include '../../../backend/db/dbconfig.php';
+$BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
 
 $requestedOrders = [];
     // Show unveified i.e Pending Order list
+    $currentSalesStaffId = $_SESSION['UserID'];
 
 
     $pendingOrderSql = "SELECT orders.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name
-                        FROM orders
-                        JOIN users ON orders.CustomerID = users.UserID
-                        WHERE orders.VerificationStatus = 'Verified'
-                        AND orders.ProductionStatus = 'Completed'
-                        ORDER BY orders.OrderID DESC;
+        FROM orders
+        JOIN users ON orders.CustomerID = users.UserID
+        JOIN sales ON orders.OrderID = sales.OrderID
+        WHERE orders.DeliveryStatus = 'Delivered' AND sales.MoneyReceived = 'Yes'";
 
-                        ";
+
 
     $result = mysqli_query($conn, $pendingOrderSql);
     if($result){
@@ -36,7 +37,8 @@ $requestedOrders = [];
                 'OrderDate' => $row['OrderDate'],
                 'VerificationStatus' => $row['VerificationStatus'],
                 'ProductionStatus' => $row['ProductionStatus'],
-            
+                'DeliveryStatus' => $row['DeliveryStatus'],
+               
                 'DeliveryDate' => $row['DeliveryDate']
             );
             $requestedOrders[] = $order;
@@ -44,25 +46,38 @@ $requestedOrders = [];
     }
 ?>
 <head>
-      <title>Production History</title>
-<link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales History</title>
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
     <link rel="stylesheet" href='../../components/tables/table.css' />
-    <link rel="stylesheet" href='productionStyle.css' />
+    <!-- <link rel="stylesheet" href='productionStyle.css' /> -->
+    
+    <style>
+.frame-wrapper {
+  /* background-color:aqua; */
+  height: 90%;
+  display: flex;
+  /* flex-direction:column; */
+  /* top:10; */
+  align-items: center;
+  justify-content: center;
+}
 
+    </style>
 </head>
-  <body>
-  
+   <body>
+     
 <div class="container">
   <?php
-   include '../../components/sidebar/prodStaffSidebar.php'; 
+     include '../../components/sidebar/adminSidebar.php'; 
 ?>
-
-
-
 <main>
     <div class="header">
-        <h2>Production Orders</h2>
+        <h2> Sales History</h2>
     </div>
+
+    <div class="table-container">
 
     <div class="table-container">
 
@@ -71,42 +86,49 @@ $requestedOrders = [];
 <table border="1">
       
             <tr>
-                <th>S.NO</th>
+                <th>Order ID</th>
                 <th>Customer Name</th>
                 <th>Order Date</th>
-                <th>Production Status</th>
+                <!-- <th>Verification Status</th>
+                <th>Production Status</th> -->
+                <th>Delivery Status</th>
                 <th>Delivery Date</th>
                 <th>Order Details</th>
             </tr>
-  
+
       
             <?php 
-             $counter = 1; 
-            foreach ($requestedOrders as $order): ?>
+        $counter = 1; // Initialize counter variable
+        foreach ($requestedOrders as $order):
+        ?>
                 <tr>
- <td><?php echo $counter; ?></td>                    <td><?php echo $order['CustomerName']; ?></td>
-                    <td><?php echo $order['OrderDate']; ?></td>
-                    <td><?php echo $order['ProductionStatus']; ?></td>
-                    <td><?php echo $order['DeliveryDate']; ?></td>
-                     <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td>
-                </tr>
-            <?php 
-            $counter++; endforeach; ?>
+            <td><?php echo $counter; ?></td> <!-- Use the counter variable instead of OrderID -->
+            <td><?php echo $order['CustomerName']; ?></td>
+            <td><?php echo $order['OrderDate']; ?></td>
+            <td><?php echo $order['DeliveryStatus']; ?></td>
+            <td><?php echo $order['DeliveryDate']; ?></td>
+            <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td>
+        </tr>
+        <?php 
+        $counter++; // Increment the counter after each iteration
+        endforeach; 
+        ?>
+
      
     </table>
  </div>
-     <div id="orderDetailFrame" class = 'modal' style="display: none;">
+    <div id="orderDetailFrame" class = 'modal' style="display: none;">
                     <!-- Close button for the iframe -->
                      <span id="closeFrame">&times;</span><br>
- <div class="frame-wrapper">
+            <div class="frame-wrapper">
                     <iframe id="iframeContent" class = "modal-content">
                      
- </div>
                     </iframe>
+            </div>
                 </div>
             </div>
             </main>
-            </div>
+    </div>
 <script>
       document.addEventListener("DOMContentLoaded", function () {
     const showOrderDetailsLinks = document.querySelectorAll(".showOrderDetails");
@@ -124,7 +146,7 @@ $requestedOrders = [];
             
             // Set iframe source dynamically based on the order ID
            
-            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/productionStaff/orderDetail.php?id=${orderId}&start=complete`;
+            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/updateSales.php?id=${orderId}`;
             iframeContainer.style.display = "block"; // Show iframe container
         });
     });

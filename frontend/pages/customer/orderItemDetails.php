@@ -158,7 +158,7 @@ if($result){
                     if($orderDetails['VerificationStatus'] == 'Pending'){
                         // able to cancel orders
                         ?> <button id="cancel-order">Cancel Order</button>
-                        <button id="updateOrder">Update Order</button>
+                        <!-- <button id="updateOrder">Update Order</button> -->
                         <div class="cancellation-container" id ='cancel-container'>
                             <form action="" method ='POST'>
                                 Today:<input type="date" id ='todayDate' disabled><br>
@@ -173,24 +173,27 @@ if($result){
                         <script>
                             const cancelContainer = document.getElementById('cancel-container')
                             const cancelBtn = document.getElementById('cancel-order');
-                            const updateBtn = document.getElementById('updateOrder');
+                            //const updateBtn = document.getElementById('updateOrder');
                             const closeBtn = document.getElementById('close');
                             const proceedBtn = document.getElementById('cancel-proceed');
 
                             const orderDetailContainer = document.getElementById("detail-container");
                             // hidden
+                           
                             cancelContainer.style.display ='none';
                             cancelBtn.addEventListener("click", function(){
                                 orderDetailContainer.style.display = 'none';
+                                cancelBtn.style.display ='none';
                                 cancelContainer.style.display ='block';
                             })
 
-                            updateBtn.addEventListener("click", function(){
+                            // updateBtn.addEventListener("click", function(){
                                 
-                            })
+                            // })
                             closeBtn.addEventListener("click", function(){
                            cancelContainer.style.display ='none';
                            orderDetailContainer.style.display = 'block';
+                           cancelBtn.style.display ='block';
 
                             })
 

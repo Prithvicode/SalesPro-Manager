@@ -95,16 +95,20 @@ $requestedOrders = [];
             </tr>
 
       
-            <?php foreach ($requestedOrders as $order): ?>
+            <?php
+              $counter = 1; 
+             foreach ($requestedOrders as $order): ?>
                 <tr>
-                    <td><?php echo $order['OrderID']; ?></td>
+                     <td><?php echo $counter; ?></td>
                     <td><?php echo $order['CustomerName']; ?></td>
                     <td><?php echo $order['OrderDate']; ?></td>
                     <td><?php echo $order['DeliveryStatus']; ?></td>
                     <td><?php echo $order['DeliveryDate']; ?></td>
                      <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php 
+            $counter++; 
+        endforeach; ?>
      
     </table>
  </div>

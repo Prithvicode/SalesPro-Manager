@@ -31,7 +31,7 @@ main {
   color: black;
   /* background-color: orange; */
   height: 100%;
-  width: 45%;
+  width: 50%;
   border-radius: 8px;
 }
 
@@ -54,7 +54,7 @@ main {
   width: 100%;
 }
 .cards {
-  width: 40%;
+  width: 50%;
   /* background-color: red; */
   display: flex;
   justify-content: space-evenly;
@@ -99,7 +99,7 @@ main {
   color: black;
   /* background-color: orange; */
   height: 100%;
-  width: 55%;
+  width: 50%;
   border-radius: 8px;
 }
 .order-row {

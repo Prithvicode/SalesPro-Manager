@@ -10,11 +10,22 @@ if( $_SESSION['UserType'] != 'ProductionStaff'){
 
 }
 else {
+  // GET ORDER FUNCTIONS
+    include '../../../backend/db/dbconfig.php';
+    include '../../../backend/functions/orders/getOrder.php';
+    include '../../../backend/functions/orders/getOrderItems.php';
 $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
-// Dynamics Values
-$totalSales = '';
 
+ $productionStaffId = $_SESSION['UserID'];
+// Dynamics Values
+$productionData  = getProductionDashboardData($conn);
+$PRODUCTION_NOT_STARTED =$productionData['not_started_production'] ;
+$PRODUCTION_STARTEDS = $productionData['started_production'];
+$PRODUCTION_COMPLETED = $productionData['completed_production'];
+
+// $TOP_PRODUCTION;
+// $LEAST_PRODUCTION;
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +35,13 @@ $totalSales = '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Production Staff Dashboard</title>
     <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+   <link rel="stylesheet" href='../../components/tables/table.css' />
+    <link rel="stylesheet" href='productionStyle.css' />
     
-    
-    
+    <style>
+
+    </style>
+   
 
   </head>
   <body>
@@ -40,83 +55,70 @@ $totalSales = '';
     <!-- Main section -->
     <main>
       <div class="header">
-        <h1>Dashboard</h1>
-        <div class="date">
+        <h1>Production Dashboard</h1>
+        <!-- <div class="date">
           <input type="date" />
-        </div>
+        </div> -->
       </div>
 
       <div class="card-container">
         <!-- <h3>Today's Data</h3> -->
         <!-- Sales -->
         <div class="sales-cards">
-          <h3>Sales Overview</h3>
+          <h3>Production Overview</h3>
           <!-- <div class="sales-activities"> -->
-          <!-- sales card row 1 -->
-          <div class="sales-row">
-            <div class="cards">
-              <img
-                src="images/icons/sales.svg"
-                id="total-sales"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-            <div class="cards">
-              <img
-                src="images/icons/profit.svg"
-                id="total-profit"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-          </div>
+         <!-- sales card row 1 -->
+<div class="sales-row">
+  <div class="cards">
+    <img
+      src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
+      id="total-sales"
+      class="card-logo"
+      alt=""
+    />
+    <div class="cards-details">
+      <span class="card-title">Not Started:</span>
+      <h3><?php echo $PRODUCTION_NOT_STARTED; ?></h3>
+    </div>
+  </div>
+  <div class="cards">
+    <img
+      src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
+      id="total-profit"
+      class="card-logo"
+      alt=""
+    />
+    <div class="cards-details">
+      <span class="card-title">Started:</span>
+      <h3><?php echo $PRODUCTION_STARTEDS; ?></h3>
+    </div>
+  </div>
+</div>
 
-          <!-- sales card row 1 -->
-          <div class="sales-row">
-            <div class="cards">
-              <img
-                src="images/icons/delivery.svg"
-                id="total-sales"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-            <div class="cards">
-              <img
-                src="images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-          </div>
-          <!-- </div> -->
-        </div>
-
+<!-- sales card row 1 -->
+<div class="sales-row">
+  <div class="cards">
+    <img
+      src="<?php echo   $BASE_URL?>/images/icons/delivery.svg"
+      id="total-sales"
+      class="card-logo"
+      alt=""
+    />
+    <div class="cards-details">
+      <span class="card-title">Completed:</span>
+      <h3><?php echo $PRODUCTION_COMPLETED; ?></h3>
+    </div>
+  </div>
+  
+</div>
+</div>
         <!-- Orders Overview -->
         <div class="order-overview">
           <h3>Orders-overview</h3>
           <div class="order-row">
             <div class="cards">
               <img
-                src="images/icons/sales.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
                 id="total-sales"
                 class="card-logo"
                 alt=""
@@ -128,7 +130,7 @@ $totalSales = '';
             </div>
             <div class="cards">
               <img
-                src="images/icons/profit.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
                 id="total-profit"
                 class="card-logo"
                 alt=""
@@ -144,7 +146,7 @@ $totalSales = '';
           <div class="order-row">
             <div class="cards">
               <img
-                src="images/icons/delivery.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/delivery.svg"
                 id="total-sales"
                 class="card-logo"
                 alt=""
@@ -156,7 +158,7 @@ $totalSales = '';
             </div>
             <div class="cards">
               <img
-                src="images/icons/truck.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/truck.svg"
                 id="total-delivery"
                 class="card-logo"
                 alt=""
@@ -173,49 +175,65 @@ $totalSales = '';
         <!-- Top sales tables? -->
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Location</th>
-            <th>OrderStatus</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Prithvi</td>
-            <td>Location- ajavalakhel</td>
-            <td>Pending</td>
-            <td>
-              <a href="#" class="update" onclick="openUpdateModal()">Update</a>
-              <a href="#" class="delete" onclick="openDeleteModal()">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Another Customer</td>
-            <td>Another Location</td>
-            <td>Completed</td>
-            <td>
-              <a href="#" class="update" onclick="openUpdateModal()">Update</a>
-              <a href="#" class="delete" onclick="openDeleteModal()">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Yet Another Customer</td>
-            <td>Yet Another Location</td>
-            <td>In Progress</td>
-            <td>
-              <a href="#" class="update" onclick="openUpdateModal()">Update</a>
-              <a href="#" class="delete" onclick="openDeleteModal()">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <?php
+$requestedOrders = [];
+    // Show unveified i.e Pending Order list
+
+
+    $pendingOrderSql = "SELECT orders.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name
+                        FROM orders
+                        JOIN users ON orders.CustomerID = users.UserID
+                        WHERE orders.VerificationStatus = 'Verified'
+                        AND orders.ProductionStatus = 'Completed'
+                        ORDER BY orders.OrderID DESC limit 5;
+
+                        ";
+
+    $result = mysqli_query($conn, $pendingOrderSql);
+    if($result){
+
+        while($row = mysqli_fetch_assoc($result)){
+            $order = array(
+                'OrderID' => $row['OrderID'],
+                'CustomerName' => $row['Name'],
+                'OrderDate' => $row['OrderDate'],
+                'VerificationStatus' => $row['VerificationStatus'],
+                'ProductionStatus' => $row['ProductionStatus'],
+            
+                'DeliveryDate' => $row['DeliveryDate']
+            );
+            $requestedOrders[] = $order;
+        }
+    }
+      ?>
+
+        <div class="table-wrapper" style ='background-color: whitesmoke; padding:3px; border-radius:5px;'>
+
+    <h3 >Recent Production:</h3>
+    <table border =1 >
+<thead>
+  <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Order Date</th>
+                <th>Production Status</th>
+                <th>Delivery Date</th>
+                <!-- <th>Order Details</th> -->
+</thead>
+<?php 
+             $counter = 1; 
+            foreach ($requestedOrders as $order): ?>
+                <tr>
+ <td><?php echo $counter; ?></td>                    <td><?php echo $order['CustomerName']; ?></td>
+                    <td><?php echo $order['OrderDate']; ?></td>
+                    <td><?php echo $order['ProductionStatus']; ?></td>
+                    <td><?php echo $order['DeliveryDate']; ?></td>
+                     <!-- <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td> -->
+                </tr>
+            <?php 
+            $counter++; endforeach; ?>
+
+     </table>
+  </div>
     </main>
 </div>
     <!-- JavaScript -->

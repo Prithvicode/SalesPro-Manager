@@ -67,7 +67,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
 <div class="sales-row">
   <div class="cards">
     <img
-      src="images/icons/sales.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
       id="total-sales"
       class="card-logo"
       alt=""
@@ -79,7 +79,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   </div>
   <div class="cards">
     <img
-      src="images/icons/profit.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
       id="total-profit"
       class="card-logo"
       alt=""
@@ -95,7 +95,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
 <div class="sales-row">
   <div class="cards">
     <img
-      src="images/icons/delivery.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/delivery.svg"
       id="total-sales"
       class="card-logo"
       alt=""
@@ -107,7 +107,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   </div>
   <div class="cards">
     <img
-      src="images/icons/truck.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/truck.svg"
       id="total-delivery"
       class="card-logo"
       alt=""
@@ -129,7 +129,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   <div class="sales-row">
     <div class="cards">
       <img
-        src="images/icons/sales.svg"
+        src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
         id="total-sales"
         class="card-logo"
         alt=""
@@ -141,13 +141,14 @@ $DELIVERED = $customerTotalData['delivered_orders'];
     </div>
     <div class="cards">
       <img
-        src="images/icons/profit.svg"
+        src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
         id="total-profit"
         class="card-logo"
         alt=""
       />
+      <div></div>
       <div class="cards-details">
-        <span class="card-title">In Transit</span>
+        <span class="card-title">In Transit:</span>
         <h3><?php echo $INTRANSIT; ?></h3>
       </div>
     </div>
@@ -157,13 +158,13 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   <div class="sales-row">
     <div class="cards">
       <img
-        src="images/icons/delivery.svg"
+        src="<?php echo   $BASE_URL?>/images/icons/truck.svg"
         id="total-sales"
         class="card-logo"
         alt=""
       />
       <div class="cards-details">
-        <span class="card-title">Delivered</span>
+        <span class="card-title">Delivered:</span>
         <h3><?php echo $DELIVERED; ?></h3>
       </div>
     </div>

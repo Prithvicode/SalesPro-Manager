@@ -8,14 +8,39 @@ if( $_SESSION['UserType'] != 'Admin'){
     echo "Access Denied";
 }
 else {
+    // GET ORDER FUNCTIONS
+    include '../../../backend/db/dbconfig.php';
+    include '../../../backend/functions/orders/getOrder.php';
+    include '../../../backend/functions/orders/getOrderItems.php';
+    include '../../../backend/functions/sales/getSales.php';
 
 // Base URL for images
 $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
 
-
+$adminDashboardData = getAdminDashboardData($conn); 
 // Dynamics Values
-$totalSales = '';
+$TOTAL_ORDERS = $adminDashboardData['total_orders'];
+$PENDING_ORDERS = $adminDashboardData['pending_orders'];
+$VERIFIED = $adminDashboardData['verified_orders'];
+$CANCELLED = $adminDashboardData['cancelled_orders'];
+$INPRODUCTION = $adminDashboardData['started_production'];
+$INTRANSIT = $adminDashboardData['in_transit_delivery'];
+$TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
+
+
+// $TOTAL_CUSTOMERS;
+// $TOTAL_SALES_STAFFS;
+// $TOTAL_SALES_STAFFS;
+
+
+   // Call the function to get sales totals
+    $salesTotals =  getSalesAdminDashboard($conn);
+    $TOTAL_SALES = $salesTotals['total_sales'];
+    $TOTAL_PROFIT = $salesTotals['total_profit'];
+    $TOTAL_REVENUE = $TOTAL_SALES - $TOTAL_PROFIT;
+
+
 
 ?>
 
@@ -26,20 +51,22 @@ $totalSales = '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+        <link rel="stylesheet" href='../../components/tables/table.css' />
 </head>
 
 <body>
 <div class="container">
 <?php
    include '../../components/sidebar/adminSidebar.php'; 
+   
 ?>
 <!-- Main section -->
     <main>
       <div class="header">
-        <h1>Dashboard</h1>
-        <div class="date">
+        <h1> Admin Dashboard</h1>
+        <!-- <div class="date">
           <input type="date" />
-        </div>
+        </div> -->
       </div>
 
       <div class="card-container">
@@ -58,8 +85,8 @@ $totalSales = '';
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Sales:</span>
+                 <h3><?php echo $TOTAL_SALES; ?></h3>
               </div>
             </div>
             <div class="cards">
@@ -70,8 +97,8 @@ $totalSales = '';
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Profit:</span>
+               <h3><?php echo $TOTAL_PROFIT; ?></h3>
               </div>
             </div>
           </div>
@@ -86,8 +113,8 @@ $totalSales = '';
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Revenue:</span>
+               <h3><?php echo $TOTAL_REVENUE; ?></h3>
               </div>
             </div>
             <div class="cards">
@@ -98,173 +125,94 @@ $totalSales = '';
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Delivered:</span>
+                <h3><?php echo $TOTAL_DELIVERED ?></h3>
               </div>
             </div>
           </div>
           <!-- </div> -->
         </div>
 
-        <!-- Orders Overview -->
+         <!-- Orders Overview -->
         <div class="order-overview">
-          <h3>Orders-overview</h3>
-          <div class="order-row">
-            <div class="cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/sales.svg"
-                id="total-sales"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
+            <h3>Orders Overview</h3>
+            <div class="order-row">
+                <div class="cards">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/sales.svg" class="card-logo" alt="">
+                    <div class="cards-details">
+                        <span class="card-title">Total Orders:</span>
+                        <h3><?php echo $TOTAL_ORDERS; ?></h3>
+                    </div>
+                </div>
+                <div class="cards">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/profit.svg" class="card-logo" alt="">
+                    <div class="cards-details">
+                        <span class="card-title">Pending:</span>
+                        <h3><?php echo $PENDING_ORDERS; ?></h3>
+                    </div>
+                </div>
             </div>
-            <div class="cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/profit.svg"
-                id="total-profit"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
+            <div class="order-row">
+                <div class="cards">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/delivery.svg" class="card-logo" alt="">
+                    <div class="cards-details">
+                        <span class="card-title">Verified :</span>
+                        <h3><?php echo $VERIFIED; ?></h3>
+                    </div>
+                </div>
+                <div class="cards">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/truck.svg" class="card-logo" alt="">
+                    <div class="cards-details">
+                        <span class="card-title">Cancelled :</span>
+                        <h3><?php echo $CANCELLED; ?></h3>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <!-- sales card row 1 -->
-          <div class="order-row">
-            <div class="cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/delivery.svg"
-                id="total-sales"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Pending Orders:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-            <div class="cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <!-- No of users -->
-        <!-- Top sales tables? -->
+      
       </div>
-      <!-- Production Overview -->
-      <div class="card-container">
-        <div class="production-container">
-          <h3>Production</h3>
-          <div class="product-row">
-            <div class="prod-cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
+      <!-- RECENT SALES TABLES -->
+  
+    
+    <div class="table-wrapper" style ='background-color: whitesmoke; padding:3px;'>
+      <?php 
+  // GET recent sales:
+  $recentSales =  getRecentSales($conn);
 
-            <!-- To be produced -->
-            <div class="prod-cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
+?>
+
+    <h3 >Recent Sales:</h3>
+   <table border="1">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Customer Name</th>
+          
+            <th>Money Received</th>
+            <th>Profit Made</th>
+            <th>Payment Type</th>
+            <th>Total Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $index = 1; ?>
+        <?php foreach ($recentSales as $sale): ?>
+        <tr>
+            <td><?php echo $index++; ?></td>
+            <td><?php echo $sale['CustomerName'] ?></td>
+          
+     
+            <td><?php echo $sale['MoneyReceived']; ?></td>
+            <td><?php echo $sale['ProfitMade']; ?></td>
+            <td><?php echo $sale['PaymentType']; ?></td>
+            <td><?php echo $sale['TotalAmount']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+  </table>
+
           </div>
-        </div>
-        <div class="production-container">
-          <h3>Production</h3>
-          <div class="product-row">
-            <div class="prod-cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-
-            <!-- To be produced -->
-            <div class="prod-cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="production-container">
-          <h3>Production</h3>
-          <div class="product-row">
-            <div class="prod-cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-
-            <!-- To be produced -->
-            <div class="prod-cards">
-              <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
-                id="total-delivery"
-                class="card-logo"
-                alt=""
-              />
-              <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
     </main>
 
   </div>

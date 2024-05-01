@@ -74,5 +74,97 @@ function getCustomerDashboardData($conn,$customerId){
 }
 
 
+// Orders Data for admin dashb
+function getAdminDashboardData($conn){ 
+    $sql = "SELECT 
+    COUNT(*) AS total_orders,
+    SUM(CASE WHEN VerificationStatus = 'Pending' THEN 1 ELSE 0 END) AS pending_orders,
+    SUM(CASE WHEN VerificationStatus = 'Verified' THEN 1 ELSE 0 END) AS verified_orders,
+    SUM(CASE WHEN VerificationStatus = 'Cancelled' THEN 1 ELSE 0 END) AS cancelled_orders,
+    SUM(CASE WHEN ProductionStatus = 'Started' THEN 1 ELSE 0 END) AS started_production,
+    SUM(CASE WHEN DeliveryStatus = 'In Transit' THEN 1 ELSE 0 END) AS in_transit_delivery,
+    SUM(CASE WHEN DeliveryStatus = 'Delivered' THEN 1 ELSE 0 END) AS delivered_orders
+    FROM orders";
+
+    $result  = mysqli_query($conn, $sql);
+    if($result){
+        if(mysqli_num_rows($result) > 0 ){
+           while($row = mysqli_fetch_assoc($result)){
+            $customerOrderTotals= array(
+            "total_orders" => $row['total_orders'],
+            "pending_orders" => $row['pending_orders'],
+            "verified_orders" => $row['verified_orders'],
+            "cancelled_orders" => $row['cancelled_orders'],
+            "started_production" => $row['started_production'],
+            "in_transit_delivery" => $row['in_transit_delivery'],
+            "delivered_orders" => $row['delivered_orders']
+        );
+           }
+
+        }
+    } 
+    return $customerOrderTotals;
+
+}
+
+function getOrderForSalesDashboard($conn,$salesStaffID){
+      $sql = "SELECT 
+    COUNT(*) AS total_orders,
+    SUM(CASE WHEN VerificationStatus = 'Pending' THEN 1 ELSE 0 END) AS pending_orders,
+    SUM(CASE WHEN VerificationStatus = 'Verified' THEN 1 ELSE 0 END) AS verified_orders,
+    SUM(CASE WHEN VerificationStatus = 'Cancelled' THEN 1 ELSE 0 END) AS cancelled_orders,
+    SUM(CASE WHEN DeliveryStatus = 'Not Delivered' THEN 1 ELSE 0 END) AS assigned_orders,
+    SUM(CASE WHEN DeliveryStatus = 'In Transit' THEN 1 ELSE 0 END) AS in_transit_delivery,
+    SUM(CASE WHEN DeliveryStatus = 'Delivered' THEN 1 ELSE 0 END) AS delivered_orders
+    FROM orders where AssignedDeliveryStaffID = $salesStaffID";
+
+    $result  = mysqli_query($conn, $sql);
+    if($result){
+        if(mysqli_num_rows($result) > 0 ){
+           while($row = mysqli_fetch_assoc($result)){
+            $customerOrderTotals= array(
+            "assigned_orders" => $row['assigned_orders'],
+            "pending_orders" => $row['pending_orders'],
+            "verified_orders" => $row['verified_orders'],
+            "cancelled_orders" => $row['cancelled_orders'],
+          
+            "in_transit_delivery" => $row['in_transit_delivery'],
+            "delivered_orders" => $row['delivered_orders']
+        );
+           }
+
+        }
+    }
+
+    return $customerOrderTotals;
+}
+
+function getProductionDashboardData($conn){
+    $sql = "SELECT 
+        COUNT(*) AS total_orders,
+        SUM(CASE WHEN ProductionStatus = 'Not Started'and 'VerificationStatus' = 'Verified' THEN 1 ELSE 0 END) AS not_started_production,
+        SUM(CASE WHEN ProductionStatus = 'Started' THEN 1 ELSE 0 END) AS started_production,
+        SUM(CASE WHEN ProductionStatus = 'Completed' THEN 1 ELSE 0 END) AS completed_production
+        FROM orders";
+
+    $result  = mysqli_query($conn, $sql);
+    $productionData = array();
+
+    if($result){
+        if(mysqli_num_rows($result) > 0 ){
+            while($row = mysqli_fetch_assoc($result)){
+                // Store the production data in an associative array
+                $productionData = array(
+                    "total_orders" => $row['total_orders'],
+                    "not_started_production" => $row['not_started_production'],
+                    "started_production" => $row['started_production'],
+                    "completed_production" => $row['completed_production']
+                );
+            }
+        }
+    }
+
+    return $productionData;
+}
 
 ?>

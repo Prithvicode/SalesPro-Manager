@@ -10,7 +10,8 @@ $CUSTOMERS = "customers.php";
 $PRODUCTS = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/addProduct.php#";
 $PRODUCTION_ORDERS = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/unverifiedProd.php";
 $UNVERIFIED_SALES = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/salesVerification.php";
-$SALES_HISTORY = "sales_history.php";
+$SALES_HISTORY = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/salesHistory.php";
+$STAFFS = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/staffManagePage.php";
 $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authentication/logout.php";
 
 ?>
@@ -86,7 +87,7 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
             
           </ul>
         <li class="nav-links">
-          <a href="<?php echo $CUSTOMERS; ?>">
+          <a href="<?php echo $STAFFS; ?>">
             <img src="<?php echo $BASE_URL; ?>images/staff.svg" alt="" />
             <span>Staff</span>
             

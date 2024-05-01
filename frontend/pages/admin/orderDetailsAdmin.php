@@ -72,7 +72,7 @@ function getProductNameFromID($conn, $prdId){
         <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
         <link rel="stylesheet" href='../../components/popups/popup.css' />
 </head>
-<<div id="detail-container">
+<div id="detail-container">
 <h3>Order Details:</h3>
 <table id ='form-table' style="border-collapse: collapse;">
   <tr>

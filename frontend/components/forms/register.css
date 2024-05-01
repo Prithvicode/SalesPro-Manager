@@ -29,10 +29,6 @@ html {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.header {
-  /* You can add header styles here if needed */
-}
-
 input {
   width: 100%;
   padding: 10px;
@@ -62,6 +58,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+.login-link {
+  display: flex;
+  gap: 1rem;
+}
 
 .header {
   text-align: center;
@@ -72,3 +72,8 @@ a:hover {
   padding: 10px;
   border-radius: 8px; /* Add padding for better visibility */
 }
+
+/* .login-link span {
+  display: inline-block;
+  margin-right: 5px;
+} */

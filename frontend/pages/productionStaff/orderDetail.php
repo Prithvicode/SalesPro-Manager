@@ -223,12 +223,40 @@ if($result){
                             })
 
                             // Prodcution Completed button:
-                            prodCompleteBtn.addEventListener("click", 
-                            function(){
-                                
-                                updateOrderStatus(orderId,'ProductionStatus', 'Completed');
+                    prodCompleteBtn.addEventListener("click", function() {
+                        updateOrderStatus(orderId, 'ProductionStatus', 'Completed');
+                        // Add production log for each product
+                        addProductionLog(orderId);
+                    });
 
+                    function addProductionLog(orderId) {
+                        const url = 'http://localhost/InventoryAndSalesManagement/backend/functions/production/addProductionLog.php';
+                        fetch(url, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                orderId: orderId
                             })
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok.');
+                            }
+                            return response.text(); // Assuming you expect text response from server
+                        })
+                        .then(data => {
+                            console.log(data); // Log the response from the server
+                            // alert the message 
+                            // alert(data);
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+}
+
+                            
 
                        
                         </script>

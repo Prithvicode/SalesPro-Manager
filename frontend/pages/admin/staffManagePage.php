@@ -20,7 +20,7 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products </title>
+    <title>Staffs </title>
     <link rel="stylesheet" href='../../components/forms/addprod.css' />
     <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
     <link rel="stylesheet" href='../../components/popups/popup.css' />
@@ -47,23 +47,24 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
 ?>
 <main>
       <div class="header">
-        <h2>Products</h2>
+        <h2>Staffs</h2>
         <!-- <div class="date">
           <input type="date" />
         </div> -->
       </div>
 
       <div class="product-container">
-        <button id ='addProdBtn'>&plus; Add Product</button>
+        <button id ='addStaffBtn'>&plus; Add Staff</button>
        <table id ='productTableBody'>
         <thead>
         <th>S.No</th>
-        <th>Product Name</th>
-        <th>Description</th>
-        <th>SKU</th>
-        <th>Cost Price</th>
-        <th>Selling Price</th>
-        <th colspan= 2>Actions</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <!-- <th>Email</th> -->
+        <th>User Type</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th colspan= 2  >Actions</th>
         </thead>
 
         <?php
@@ -93,11 +94,11 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
     
    <script>
     // Delete functinality:
-    // Function to handle product deletion confirmation
+    // Function to handle user deletion confirmation
     function confirmDelete(productId) {
     if (confirm("Are you sure you want to delete?")) {
-        // Send fetch request to delete product
-        fetch(`http://localhost/InventoryAndSalesManagement/backend/functions/product/deleteProduct.php?productId=${productId}`, {
+        // Send fetch request to delete user
+        fetch(`http://localhost/InventoryAndSalesManagement/backend/functions/user/deleteProduct.php?productId=${productId}`, {
             method: 'DELETE'
         })
         .then(response => {
@@ -106,7 +107,7 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
                 location.reload();
             } else {
                 // Handle error, maybe show a message to the user
-                console.error('Failed to delete product');
+                console.error('Failed to delete user');
             }
             return response.text(); // Parse response as text
         })
@@ -122,26 +123,27 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
 
     const productTableBody = document.getElementById('productTableBody');
 
-    fetch('http://localhost/InventoryAndSalesManagement/backend/functions/product/getProduct.php', {
+    fetch('http://localhost/InventoryAndSalesManagement/backend/functions/users/users.php', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
     })
     .then(response => response.json())
-    .then(products => {
-        products.forEach((product, index) => {
+    .then(users => {
+        users.forEach((user, index) => {
             const row = document.createElement("tr")
             row.innerHTML = `
               
                     <td>${index + 1}</td>
-                    <td>${product.ProductName}</td>
-                    <td>${product.Description}</td>
-                    <td>${product.SKU}</td>
-                    <td>${product.CostPrice}</td>
-                    <td>${product.SellingPrice}</td>
-                    <td><a href= "#" class ='editBtn'  data-productid="${product.ProductID}"> Edit </a></td>
-                    <td><a onclick="confirmDelete(${product.ProductID})" class ='deleteBtn'>Delete</a></td>
+                    <td>${user.FirstName}</td>
+                    <td>${user.LastName}</td>
+                   
+                    <td>${user.UserType}</td>
+                    <td>${user.PhoneNumber}</td>
+                    <td>${user.Address}</td>
+                    <td><a href= "#" class ='editBtn'  data-productid="${user.UserID}"> Edit </a></td>
+                    <td><a onclick="confirmDelete(${user.UserID})" class ='deleteBtn'>Delete</a></td>
                    
                
             `;
@@ -157,17 +159,17 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
 
 
 
- // Show iframe for the product form
+ // Show iframe for the user form
       document.addEventListener("DOMContentLoaded", function () {
-    const addProdBtn = document.getElementById("addProdBtn");
+    const addStaffBtn = document.getElementById("addStaffBtn");
     const editBtn = document.getElementById("editBtn");
     const iframeContainer = document.getElementById("orderDetailFrame");
     const closeIframeButton = document.getElementById("closeFrame");
     const iframeContent = document.getElementById("iframeContent");
 
-      // Show Add product Form:
-      addProdBtn.addEventListener("click",function(){
-        iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/addProductForm.php`;
+      // Show Add user Form:
+      addStaffBtn.addEventListener("click",function(){
+        iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/addStaffForm.php`;
         iframeContainer.style.display = "block"; // Show iframe container
 
       })

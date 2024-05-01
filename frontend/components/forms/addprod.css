@@ -17,8 +17,23 @@
 #addProdBtn:hover {
   background-color: #1d5a4e;
 }
-#editBtn {
+#addStaffBtn {
+  padding: 0.5rem 0.5rem;
+  background-color: #359e89;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  float: right;
+  margin-bottom: 6px;
+}
+#addStaffBtn:hover {
+  background-color: #1d5a4e;
+}
+.editBtn {
+  background-color: #359e89;
 }
 
-#deleteBtn {
+.deleteBtn {
+  background-color: rgba(197, 15, 15, 0.868);
 }
