@@ -16,6 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Hash the password
     $hashedPassword = password_hash($passw, PASSWORD_DEFAULT);
 
+
+    // Check if the user email exits or not
+    $checkMail = "select * from users where Email = '$email'";
+    $checkResult = mysqli_query($conn, $checkMail);
+    if(mysqli_num_rows($checkResult)>0){
+        // it exists
+        echo "User Email already taken.";
+    }
+    else{
     $addUserQuery = "INSERT INTO users 
                     (FirstName, LastName, 
                     Email, UserType, 
@@ -31,5 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo 'Insert failed';
     }
+}
 }
 ?>

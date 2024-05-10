@@ -73,7 +73,36 @@ if($result){
         <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
         <link rel="stylesheet" href='../../components/popups/popup.css' />
              <link rel="stylesheet" href='statusStyle.css' />
+<style>
+    #prodStart {
+    background-color: #007bff; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
 
+#prodStart:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#prodComplete {
+    background-color: #ffc107; /* Yellow color */
+    color: black;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#prodComplete:hover {
+    background-color: #d39e00; /* Darker yellow on hover */
+}
+
+</style>
 </head>
 <!-- show order and custoemr Details -->
 
@@ -158,6 +187,7 @@ if($result){
                 
                 case 'ProductionStaff':
                     ?>
+                    <br>
                     <div>
 
                         <button id="prodStart" style ='display: none'>Production Started</button>
@@ -208,6 +238,12 @@ if($result){
                                     console.log(data); // Log the response from the server
                                    // alert the message 
                                    alert(data);
+                                     var parentWindow = window.parent;
+            
+                                    // Close the parent iframe by removing it from the DOM
+                                    parentWindow.document.getElementById('orderDetailFrame').remove();
+                                    parentWindow.location.reload();
+                                //    document.getElementById('detail-container').style.display = 'none';
                                 })
                                 .catch(error => {
                                     console.error('There was a problem with the fetch operation:', error);
@@ -227,6 +263,9 @@ if($result){
                         updateOrderStatus(orderId, 'ProductionStatus', 'Completed');
                         // Add production log for each product
                         addProductionLog(orderId);
+                        // Reload the current URL
+                        window.location.reload();
+
                     });
 
                     function addProductionLog(orderId) {
@@ -248,6 +287,7 @@ if($result){
                         })
                         .then(data => {
                             console.log(data); // Log the response from the server
+                            
                             // alert the message 
                             // alert(data);
                         })

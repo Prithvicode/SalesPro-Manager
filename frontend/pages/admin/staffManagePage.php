@@ -53,9 +53,9 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
         </div> -->
       </div>
 
-      <div class="product-container">
+      <div class="user-container">
         <button id ='addStaffBtn'>&plus; Add Staff</button>
-       <table id ='productTableBody'>
+       <table id ='userTableBody'>
         <thead>
         <th>S.No</th>
         <th>First Name</th>
@@ -95,10 +95,10 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
    <script>
     // Delete functinality:
     // Function to handle user deletion confirmation
-    function confirmDelete(productId) {
+    function confirmDelete(userId) {
     if (confirm("Are you sure you want to delete?")) {
         // Send fetch request to delete user
-        fetch(`http://localhost/InventoryAndSalesManagement/backend/functions/user/deleteProduct.php?productId=${productId}`, {
+        fetch(`http://localhost/InventoryAndSalesManagement/backend/functions/users/deleteUser.php?userId=${userId}`, {
             method: 'DELETE'
         })
         .then(response => {
@@ -121,7 +121,7 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
     }
 }
 
-    const productTableBody = document.getElementById('productTableBody');
+    const userTableBody = document.getElementById('userTableBody');
 
     fetch('http://localhost/InventoryAndSalesManagement/backend/functions/users/users.php', {
         method: 'GET',
@@ -142,13 +142,13 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
                     <td>${user.UserType}</td>
                     <td>${user.PhoneNumber}</td>
                     <td>${user.Address}</td>
-                    <td><a href= "#" class ='editBtn'  data-productid="${user.UserID}"> Edit </a></td>
+                    <td><a href= "#" class ='editBtn'  data-userid="${user.UserID}"> Edit </a></td>
                     <td><a onclick="confirmDelete(${user.UserID})" class ='deleteBtn'>Delete</a></td>
                    
                
             `;
 
-            productTableBody.appendChild(row);
+            userTableBody.appendChild(row);
             
         });
     });
@@ -176,14 +176,14 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
 // EDIT
 
    
-        // Show iframe for updateProduct page when Edit button is clicked
+        // Show iframe for updateuser page when Edit button is clicked
         document.addEventListener("click", function(event) {
             if (event.target.classList.contains('editBtn')) {
                 event.preventDefault();
-                const productId = event.target.getAttribute("data-productid");
+                const userId = event.target.getAttribute("data-userid");
                 const iframeContainer = document.getElementById("orderDetailFrame");
                 const iframeContent = document.getElementById("iframeContent");
-                iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/updateProduct.php?productId=${productId}`;
+                iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/updateUser.php?userId=${userId}`;
                 iframeContainer.style.display = "block";
             }
         });

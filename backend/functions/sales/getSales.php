@@ -68,17 +68,19 @@ function getSalesAdminDashboard($conn){
       $salesTotals = array();
 
         // SQL query to get total sales and total profit
-        $sql = "SELECT SUM(TotalAmount) AS total_sales, SUM(ProfitMade) AS total_profit FROM sales";
+        $sql = "SELECT count(distinct orderID) as total_sales_number,SUM(TotalAmount) AS total_sales, SUM(ProfitMade) AS total_profit FROM sales";
         $result = mysqli_query($conn, $sql);
         
         if ($result) {
             $salesData = mysqli_fetch_assoc($result);
             $salesTotals['total_sales'] = $salesData['total_sales'];
             $salesTotals['total_profit'] = $salesData['total_profit'];
+            $salesTotals['total_sales_number'] = $salesData['total_sales_number'];
         } else {
             // Handle error if query fails
             $salesTotals['total_sales'] = 0;
             $salesTotals['total_profit'] = 0;
+            $salesTotals['total_sales_number'] = 0;
         }
         return $salesTotals;
 }

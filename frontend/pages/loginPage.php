@@ -1,3 +1,28 @@
+<?php
+session_start(); // Start the session
+
+// If session is set, redirect to respective dashboard
+if(isset($_SESSION['UserID'])){
+    $userType = $_SESSION['UserType'];
+    switch($userType){
+        case 'Customer':
+            header("Location: http://localhost/InventoryAndSalesManagement/frontend/pages/customer/customerDashboard.php");
+            exit();
+        case 'Admin':
+            header("Location: http://localhost/InventoryAndSalesManagement/frontend/pages/admin/adminDashboard.php");
+            exit();
+        case 'ProductionStaff':
+            header("Location: http://localhost/InventoryAndSalesManagement/frontend/pages/productionStaff/prodStaffDashboard.php");
+            exit();
+        case 'SalesStaff':
+            header("Location: http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/salesStaffDashboard.php");
+            exit();
+    }
+}
+
+// If not logged in, display login form
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

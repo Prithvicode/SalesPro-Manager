@@ -117,7 +117,47 @@ if($result){
         <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
         <link rel="stylesheet" href='../../components/popups/popup.css' />
         <!-- <link rel="stylesheet" href='statusStyle.css' /> -->
+<style>
+    /* Apply styles to labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
+/* Apply styles to inputs */
+input[type="date"],
+input[type="text"],
+select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 70%;
+    box-sizing: border-box; /* Ensure padding and border don't add to width */
+}
+
+/* Apply styles to select elements */
+select {
+    /* width: calc(100% - 2px); Adjust width to account for border */
+}
+
+/* Apply styles to submit button */
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Apply hover effect to submit button */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+</style>
 </head>
 <!-- show order and custoemr Details -->
 
@@ -281,6 +321,11 @@ value =
                                     console.log(data); // Log the response from the server
                                    // alert the message 
                                    alert(data);
+                                    var parentWindow = window.parent;
+            
+                                    // Close the parent iframe by removing it from the DOM
+                                    parentWindow.document.getElementById('orderDetailFrame').remove();
+                                    parentWindow.location.reload();
                                 })
                                 .catch(error => {
                                     console.error('There was a problem with the fetch operation:', error);
@@ -292,7 +337,6 @@ value =
   
    //Only show the Sales form if the Delivery Status is Delivered.
     
-   
     const formContainer = document.getElementById('form-container');
     function toggleSalesFormVisibility() {
     if (deliveryStatusInput.value === 'Delivered') {

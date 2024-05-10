@@ -114,14 +114,86 @@ if($result){
         }?>
 
 <!-- show order and custoemr Details -->
+<head>
+        <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
+        <link rel="stylesheet" href='../../components/popups/popup.css' />
+        <!-- <link rel="stylesheet" href='statusStyle.css' /> -->
+        
+<style>
+    /* Apply styles to labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
-<p>Order ID:<?php echo $orderDetails['OrderID']?><p>
-<p>Customer Name: <?php echo $orderDetails['CustomerName']?><p>
-<p>Phone Number: <?php echo $orderDetails['phoneNumber']?><p>
-<p>Delivery City: <?php echo $orderDetails['deliveryCity']?><p>
-<p>Delivery Address: <?php echo $orderDetails['deliveryAddress']?><p>
-<p>Delivery Instruction:<?php echo $orderDetails['deliveryInstructions']?> <p>
-<p>Delivery Date: <?php echo $orderDetails['DeliveryDate']?><p>
+/* Apply styles to inputs */
+input[type="date"],
+input[type="text"],
+select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 70%;
+    box-sizing: border-box; /* Ensure padding and border don't add to width */
+}
+
+/* Apply styles to select elements */
+select {
+    /* width: calc(100% - 2px); Adjust width to account for border */
+}
+
+/* Apply styles to submit button */
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Apply hover effect to submit button */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+</style>
+</head>
+<!-- show order and custoemr Details -->
+
+<div id="detail-container">
+<h3>Order Details:</h3>
+<table id ='form-table' style="border-collapse: collapse;">
+  <tr>
+        <td><label for="orderID">Order ID:</label></td>
+        <td><?php echo $orderDetails['OrderID']?></td>
+    </tr>
+    <tr>
+        <td><label for="customerName">Customer Name:</label></td>
+        <td><?php echo $orderDetails['CustomerName']?></td>
+    </tr>
+    <tr>
+        <td><label for="phoneNumber">Phone Number:</label></td>
+        <td><?php echo $orderDetails['phoneNumber']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryCity">Delivery City:</label></td>
+        <td><?php echo $orderDetails['deliveryCity']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryAddress">Delivery Address:</label></td>
+        <td><?php echo $orderDetails['deliveryAddress']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryInstructions">Delivery Instruction:</label></td>
+        <td><?php echo $orderDetails['deliveryInstructions']?></td>
+    </tr>
+    <tr>
+        <td><label for="deliveryDate">Delivery Date:</label></td>
+        <td><?php echo $orderDetails['DeliveryDate']?></td>
+    </tr>
+</table>
 <br>
 <!-- Show the order item details table -->
 <table border="1">
@@ -162,6 +234,8 @@ if($result){
             <td>Rs. <?php echo $totalAmount?></td>
         </tr>
 </table>
+    </div>
+
 <!-- Form to update  sales Status after delivery. -->
 <br><br>
 <label for="deliveryStatus">Delivery Status: </label>
@@ -180,7 +254,7 @@ action="http://localhost/InventoryAndSalesManagement/frontend/pages/salesStaff/u
 method = "POST">
     
     <label for="">Date</label>
-    <input type="date" id= 'saleDate'  name = 'salesDate'><br>
+    <input type="date" id= 'saleDate'  name = 'salesDate' readonly><br>
 
     <label for="totalAmount" >Total Amount: </label>
 <input 
@@ -247,6 +321,11 @@ value =
                                     console.log(data); // Log the response from the server
                                    // alert the message 
                                    alert(data);
+                                    var parentWindow = window.parent;
+            
+                                    // Close the parent iframe by removing it from the DOM
+                                    parentWindow.document.getElementById('orderDetailFrame').remove();
+                                    parentWindow.location.reload();
                                 })
                                 .catch(error => {
                                     console.error('There was a problem with the fetch operation:', error);

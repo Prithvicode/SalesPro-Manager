@@ -18,11 +18,21 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
 
 
  $productionStaffId = $_SESSION['UserID'];
+ $date = date("Y-m-d");
 // Dynamics Values
 $productionData  = getProductionDashboardData($conn);
+$PRODUCTION_TOTAL_ORDERS = $productionData['verified_orders'] ;
+
 $PRODUCTION_NOT_STARTED =$productionData['not_started_production'] ;
 $PRODUCTION_STARTEDS = $productionData['started_production'];
 $PRODUCTION_COMPLETED = $productionData['completed_production'];
+
+$productionDataToday  = getProductionDashboardDataFromDate($conn,$date);
+$PRODUCTION_TOTAL_ORDERS_TODAY = $productionDataToday['verified_orders'] ;
+$PRODUCTION_NOT_STARTED_TODAY =$productionDataToday['not_started_production'] ;
+$PRODUCTION_STARTEDS_TODAY = $productionDataToday['started_production'];
+$PRODUCTION_COMPLETED_TODAY = $productionDataToday['completed_production'];
+
 
 // $TOP_PRODUCTION;
 // $LEAST_PRODUCTION;
@@ -69,9 +79,21 @@ $PRODUCTION_COMPLETED = $productionData['completed_production'];
           <!-- <div class="sales-activities"> -->
          <!-- sales card row 1 -->
 <div class="sales-row">
+   <div class="cards">
+    <img
+      src="<?php echo   $BASE_URL?>/images/icons/total_order.png"
+      id="total-sales"
+      class="card-logo"
+      alt=""
+    />
+    <div class="cards-details">
+      <span class="card-title">Total Order:</span>
+      <h3><?php echo $PRODUCTION_TOTAL_ORDERS; ?></h3>
+    </div>
+  </div>
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/not_started.png"
       id="total-sales"
       class="card-logo"
       alt=""
@@ -81,9 +103,14 @@ $PRODUCTION_COMPLETED = $productionData['completed_production'];
       <h3><?php echo $PRODUCTION_NOT_STARTED; ?></h3>
     </div>
   </div>
+  
+</div>
+
+<!-- sales card row 1 -->
+<div class="sales-row">
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/started.png"
       id="total-profit"
       class="card-logo"
       alt=""
@@ -93,13 +120,9 @@ $PRODUCTION_COMPLETED = $productionData['completed_production'];
       <h3><?php echo $PRODUCTION_STARTEDS; ?></h3>
     </div>
   </div>
-</div>
-
-<!-- sales card row 1 -->
-<div class="sales-row">
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/delivery.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/completed.png"
       id="total-sales"
       class="card-logo"
       alt=""
@@ -114,30 +137,30 @@ $PRODUCTION_COMPLETED = $productionData['completed_production'];
 </div>
         <!-- Orders Overview -->
         <div class="order-overview">
-          <h3>Orders-overview</h3>
+          <h3>Todays Overview</h3>
           <div class="order-row">
             <div class="cards">
               <img
-                src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/total_order.png"
                 id="total-sales"
                 class="card-logo"
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Total Orders:</span>
+                <h3><?php echo $PRODUCTION_TOTAL_ORDERS_TODAY?></h3>
               </div>
             </div>
             <div class="cards">
               <img
-                src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/not_started.png"
                 id="total-profit"
                 class="card-logo"
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Not Started:</span>
+                <h3><?php echo $PRODUCTION_NOT_STARTED_TODAY?></h3>
               </div>
             </div>
           </div>
@@ -146,26 +169,27 @@ $PRODUCTION_COMPLETED = $productionData['completed_production'];
           <div class="order-row">
             <div class="cards">
               <img
-                src="<?php echo   $BASE_URL?>/images/icons/delivery.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/started.png"
                 id="total-sales"
                 class="card-logo"
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Pending Orders:</span>
-                <h3>4000</h3>
+                <span class="card-title">Started:</span>
+                <h3><?php echo $PRODUCTION_STARTEDS_TODAY?></h3>
               </div>
             </div>
             <div class="cards">
               <img
-                src="<?php echo   $BASE_URL?>/images/icons/truck.svg"
+                src="<?php echo   $BASE_URL?>/images/icons/completed.png"
+      id="total-sales"
                 id="total-delivery"
                 class="card-logo"
                 alt=""
               />
               <div class="cards-details">
-                <span class="card-title">Total Sales:</span>
-                <h3>4000</h3>
+                <span class="card-title">Completed:</span>
+                <h3><?php echo $PRODUCTION_COMPLETED_TODAY?></h3>
               </div>
             </div>
           </div>

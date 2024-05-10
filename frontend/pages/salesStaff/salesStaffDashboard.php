@@ -73,7 +73,9 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
         <link rel="stylesheet" href='../../components/tables/table.css' />
 
     
-    
+    <style>
+       
+    </style>
   </head>
   <body>
   
@@ -91,14 +93,14 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
                 <h3>My Sales</h3>
                 <div class="sales-row">
                     <div class="cards">
-                        <img src="<?php echo $BASE_URL; ?>images/icons/sales.svg" id="total-sales" class="card-logo" alt="">
+                        <img src="<?php echo $BASE_URL; ?>images/icons/total_sales.png" id="total-sales" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">Total Sales:</span>
                             <h3><?php echo $TOTAL_SALES ?></h3>
                         </div>
                     </div>
                     <div class="cards">
-                        <img src="<?php echo $BASE_URL; ?>images/icons/profit.svg" id="total-profit" class="card-logo" alt="">
+                        <img src="<?php echo $BASE_URL; ?>images/icons/total_profit.png" id="total-profit" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">Total Profit:</span>
                             <h3><?php echo $TOTAL_PROFIT ?></h3>
@@ -107,7 +109,7 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
                 </div>
                 <div class="sales-row">
                     <div class="cards">
-                        <img src="<?php echo $BASE_URL; ?>images/icons/delivery.svg" id="total-sales" class="card-logo" alt="">
+                        <img src="<?php echo $BASE_URL; ?>images/icons/revenue.png" id="total-sales" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">Total Revenue:</span>
                             <h3><?php echo $TOTAL_REVENUE ?></h3>
@@ -119,14 +121,14 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
                 <h3>My Orders</h3>
                 <div class="order-row">
                     <div class="cards">
-                        <img src="<?php echo $BASE_URL; ?>images/icons/sales.svg" id="total-sales" class="card-logo" alt="">
+                        <img src="<?php echo $BASE_URL; ?>images/icons/not_delivered.png" id="total-sales" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">Not Delivered:</span>
                             <h3><?php echo $ASSIGNED_ORDER?></h3>
                         </div>
                     </div>
                     <div class="cards">
-                        <img src="<?php echo $BASE_URL; ?>images/icons/profit.svg" id="total-profit" class="card-logo" alt="">
+                        <img src="<?php echo $BASE_URL; ?>images/icons/in_transit.png" id="total-profit" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">In Transit:</span>
                             <h3><?php echo $IN_TRANSIT_ORDERS ?></h3>
@@ -135,7 +137,7 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
                 </div>
                 <div class="order-row">
                     <div class="cards">
-                        <img src="<?php echo $BASE_URL; ?>images/icons/delivery.svg" id="total-sales" class="card-logo" alt="">
+                        <img src="<?php echo $BASE_URL; ?>images/icons/deliveryTruck.png" id="total-sales" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">Delivered :</span>
                             <h3><?php echo $DELIVERED_ORDERS ?></h3>

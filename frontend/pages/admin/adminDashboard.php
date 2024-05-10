@@ -36,9 +36,9 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
 
    // Call the function to get sales totals
     $salesTotals =  getSalesAdminDashboard($conn);
-    $TOTAL_SALES = $salesTotals['total_sales'];
+    $TOTAL_REVENUE = $salesTotals['total_sales'];
     $TOTAL_PROFIT = $salesTotals['total_profit'];
-    $TOTAL_REVENUE = $TOTAL_SALES - $TOTAL_PROFIT;
+    $TOTAL_SALES = $salesTotals['total_sales_number'];
 
 
 
@@ -79,7 +79,7 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
           <div class="sales-row">
             <div class="cards">
               <img
-                src="<?php echo $BASE_URL; ?>images/icons/sales.svg"
+                src="<?php echo $BASE_URL; ?>images/icons/total_sales.png"
                 id="total-sales"
                 class="card-logo"
                 alt=""
@@ -91,7 +91,7 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
             </div>
             <div class="cards">
               <img
-                src="<?php echo $BASE_URL; ?>images/icons/profit.svg"
+                src="<?php echo $BASE_URL; ?>images/icons/total_profit.png"
                 id="total-profit"
                 class="card-logo"
                 alt=""
@@ -107,7 +107,7 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
           <div class="sales-row">
             <div class="cards">
               <img
-                src="<?php echo $BASE_URL; ?>images/icons/delivery.svg"
+                src="<?php echo $BASE_URL; ?>images/icons/revenue.png"
                 id="total-sales"
                 class="card-logo"
                 alt=""
@@ -119,7 +119,7 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
             </div>
             <div class="cards">
               <img
-                src="<?php echo $BASE_URL; ?>images/icons/truck.svg"
+                src="<?php echo $BASE_URL; ?>images/icons/deliveryTruck.png"
                 id="total-delivery"
                 class="card-logo"
                 alt=""
@@ -138,14 +138,14 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
             <h3>Orders Overview</h3>
             <div class="order-row">
                 <div class="cards">
-                    <img src="<?php echo $BASE_URL; ?>images/icons/sales.svg" class="card-logo" alt="">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/total_order.png" class="card-logo" alt="">
                     <div class="cards-details">
                         <span class="card-title">Total Orders:</span>
                         <h3><?php echo $TOTAL_ORDERS; ?></h3>
                     </div>
                 </div>
                 <div class="cards">
-                    <img src="<?php echo $BASE_URL; ?>images/icons/profit.svg" class="card-logo" alt="">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/pending.png" class="card-logo" alt="">
                     <div class="cards-details">
                         <span class="card-title">Pending:</span>
                         <h3><?php echo $PENDING_ORDERS; ?></h3>
@@ -154,14 +154,14 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
             </div>
             <div class="order-row">
                 <div class="cards">
-                    <img src="<?php echo $BASE_URL; ?>images/icons/delivery.svg" class="card-logo" alt="">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/verified_order.png" class="card-logo" alt="">
                     <div class="cards-details">
                         <span class="card-title">Verified :</span>
                         <h3><?php echo $VERIFIED; ?></h3>
                     </div>
                 </div>
                 <div class="cards">
-                    <img src="<?php echo $BASE_URL; ?>images/icons/truck.svg" class="card-logo" alt="">
+                    <img src="<?php echo $BASE_URL; ?>images/icons/cancel_order.png" class="card-logo" alt="">
                     <div class="cards-details">
                         <span class="card-title">Cancelled :</span>
                         <h3><?php echo $CANCELLED; ?></h3>

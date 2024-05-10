@@ -31,10 +31,10 @@ session_start();
         <!-- <input type="number" id="productionTime" name="productionTime" required><br> -->
 
         <label for="costPrice">Cost Price:</label><br>
-        <input type="number" id="costPrice" name="costPrice" step="0.01" required><br>
+        <input type="number" id="costPrice" name="costPrice" step="0.01" min = 1 required><br>
 
         <label for="sellingPrice">Selling Price:</label><br>
-        <input type="number" id="sellingPrice" name="sellingPrice" step="0.01" required><br>
+        <input type="number" id="sellingPrice" name="sellingPrice" step="0.01" min = 1 required><br>
 
         <!-- <label for="inventoryLevel">Inventory Level:</label><br>
         <input type="number" id="inventoryLevel" name="inventoryLevel" required><br> -->

@@ -67,8 +67,8 @@ $DELIVERED = $customerTotalData['delivered_orders'];
 <div class="sales-row">
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
-      id="total-sales"
+      src="<?php echo   $BASE_URL?>/images/icons/total_order.png"
+      
       class="card-logo"
       alt=""
     />
@@ -79,8 +79,8 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   </div>
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
-      id="total-profit"
+      src="<?php echo   $BASE_URL?>/images/icons/pending.png"
+  
       class="card-logo"
       alt=""
     />
@@ -95,8 +95,8 @@ $DELIVERED = $customerTotalData['delivered_orders'];
 <div class="sales-row">
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/delivery.svg"
-      id="total-sales"
+      src="<?php echo   $BASE_URL?>/images/icons/verified_order.png"
+
       class="card-logo"
       alt=""
     />
@@ -107,7 +107,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   </div>
   <div class="cards">
     <img
-      src="<?php echo   $BASE_URL?>/images/icons/truck.svg"
+      src="<?php echo   $BASE_URL?>/images/icons/cancel_order.png"
       id="total-delivery"
       class="card-logo"
       alt=""
@@ -129,7 +129,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   <div class="sales-row">
     <div class="cards">
       <img
-        src="<?php echo   $BASE_URL?>/images/icons/sales.svg"
+        src="<?php echo   $BASE_URL?>/images/icons/in_production.png"
         id="total-sales"
         class="card-logo"
         alt=""
@@ -141,7 +141,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
     </div>
     <div class="cards">
       <img
-        src="<?php echo   $BASE_URL?>/images/icons/profit.svg"
+        src="<?php echo   $BASE_URL?>/images/icons/in_transit.png"
         id="total-profit"
         class="card-logo"
         alt=""
@@ -158,7 +158,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   <div class="sales-row">
     <div class="cards">
       <img
-        src="<?php echo   $BASE_URL?>/images/icons/truck.svg"
+        src="<?php echo   $BASE_URL?>/images/icons/deliveryTruck.png"
         id="total-sales"
         class="card-logo"
         alt=""

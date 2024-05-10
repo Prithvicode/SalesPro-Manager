@@ -141,7 +141,7 @@ $requestedOrders = [];
             
             // Set iframe source dynamically based on the order ID
            
-            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/orderDetailsAdmin.php?id=${orderId}`;
+            iframeContent.src = `http://localhost/InventoryAndSalesManagement/frontend/pages/admin/orderDetailsAdmin.php?id=${orderId}&`;
             iframeContainer.style.display = "block"; // Show iframe container
         });
     });

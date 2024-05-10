@@ -74,7 +74,44 @@ function getProductNameFromID($conn, $prdId){
         <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
         <link rel="stylesheet" href='../../components/popups/popup.css' />
         <!-- <link rel="stylesheet" href='statusStyle.css' /> -->
+<style>
+    .assign-delivery-container {
+    margin-bottom: 20px;
+}
 
+.assign-delivery-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.assign-delivery-container select {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.assign-button-container {
+    margin-top: 10px;
+}
+
+.assign-button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.assign-button-container button:hover {
+    background-color: #0056b3;
+}
+
+</style>
 </head>
 <div id="detail-container">
 <h3>Order Details:</h3>
@@ -140,35 +177,34 @@ function getProductNameFromID($conn, $prdId){
             <td>Rs. <?php echo $totalAmount?></td>
         </tr>
 </table>
-        <div>
-        <label for="assignStaff">Assign Delivery Staff:</label>  
-        <select name="assignStaff" id="assignStaff">
+<br>
+        <div class="assign-delivery-container">
+    <label for="assignStaff">Assign Delivery Staff:</label>  
+    <select name="assignStaff" id="assignStaff">
         <?php
-        $getDeliveryStaffSql = "SELECT * from users where UserType = 'SalesStaff'";
+        $getDeliveryStaffSql = "SELECT * FROM users WHERE UserType = 'SalesStaff'";
         $result = mysqli_query($conn, $getDeliveryStaffSql);
-        if($result){
-            while($row = mysqli_fetch_assoc($result)){
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <option value="<?php echo $row['UserID']?>"><?php echo $row['FirstName'].' '.$row['LastName']?></option>
+                <option value="<?php echo $row['UserID'] ?>"><?php echo $row['FirstName'] . ' ' . $row['LastName'] ?></option>
                 <?php 
             }
-            }
-
+        }
         ?>
-        </select>        
-        </div>
+    </select>        
+</div>
 
-       
 <?php 
-  $userType = $_SESSION['UserType'];
+$userType = $_SESSION['UserType'];
 
-            switch($userType){
-                case 'Admin':
-                    ?> 
-                    <div>
-                        <button id='assignStaffBtn'>Assign Delivery Staff</button>
-
-                        <script>
+switch ($userType) {
+    case 'Admin':
+        ?> 
+        <div class="assign-button-container">
+            <button id="assignStaffBtn">Assign Delivery Staff</button>
+        
+        <script>
                             const assignStaffBtn = document.getElementById('assignStaffBtn');
                              function updateOrderStatus(orderId, statusType, statusValue) {
                                 const url = 'http://localhost/InventoryAndSalesManagement/backend/functions/orders/updateOrderSaleStaff.php';
@@ -191,8 +227,13 @@ function getProductNameFromID($conn, $prdId){
                                 })
                                 .then(data => {
                                     console.log(data); // Log the response from the server
+                                           var parentWindow = window.parent;
+            
+                                    // Close the parent iframe by removing it from the DOM
+                                    parentWindow.document.getElementById('orderDetailFrame').remove();
+                                    parentWindow.location.reload();
                                    // alert the message 
-                                   alert(data);
+                                //    alert(data);
                                 })
                                 .catch(error => {
                                     console.error('There was a problem with the fetch operation:', error);
@@ -208,6 +249,7 @@ function getProductNameFromID($conn, $prdId){
                         console.log(assignedInput.value);
                         updateOrderStatus(orderId, 'AssignedDeliveryStaffID', assignedInput.value);
                         alert(`Order is assigned to ${selectedText}`);
+                        window.parent.closeIframe();
 });
 
 

@@ -17,7 +17,7 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
   <div class="container">
     <aside class="sidebar">
       <div class="logo">
-        <img src="<?php echo $BASE_URL?>images/dashboard.svg" alt="Logo" />
+        <img src="<?php echo $BASE_URL?>images/logo.png" alt="Logo" height="25px"  />
         <span class="logo-title"> SalesProManager</span>
       </div>
       <ul class="menu-links">
@@ -48,14 +48,29 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
 
       <div class="bottom-content">
         <li class="nav-links">
-          <a href="<?php echo $LOGOUT ?>">
-            <img src="<?php echo $BASE_URL?>images/logout.svg" alt="" />
-            <span>Logout </span>
-          </a>
+          <a href="#" onclick="confirmLogout(event)">
+                    <img src="<?php echo $BASE_URL; ?>images/logout.svg" alt="" />
+                    <span>Logout</span>
+                </a>
         </li>
       </div>
     </aside>
    
+    <script>
+      
+    function confirmLogout(event) {
+            // Prevent the default behavior of the link (i.e., navigating to $LOGOUT)
+            event.preventDefault();
+
+            // Show a confirmation dialog
+            var confirmLogout = confirm("Are you sure you want to logout?");
+
+            // If the user confirms, navigate to the logout URL
+            if (confirmLogout) {
+                window.location.href = "<?php echo $LOGOUT; ?>";
+            }
+        }
+    </script>
     <!-- Righst section
     <div class="right">
       <h1>right</h1>

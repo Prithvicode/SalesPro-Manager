@@ -72,6 +72,83 @@ if($result){
         <link rel="stylesheet" href='../../components/popups/popup.css' />
              <link rel="stylesheet" href='statusStyle.css' />
 
+             <style>
+                /* Buttons and Cancel Form */
+                #cancel-order{     
+                background-color:#FF5733;;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+              
+                
+               
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+                border-radius: 12px;
+      }
+       #cancel-order:hover{
+        background-color: #5f0b02;
+       }
+.cancellation-container {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ced4da; /* Light grey border */
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+.cancellation-container form {
+    margin-bottom: 20px;
+    display:flex;
+    flex-direction:column;
+
+}
+
+.cancellation-container label,
+.cancellation-container input[type="text"],
+.cancellation-container input[type="date"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cancellation-container input[type="date"],
+.cancellation-container input[type="text"],
+.cancellation-container input[type="submit"],
+.cancellation-container button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid blue; /* Light grey border */
+}
+.cancellation-container input[type="date"]{
+    padding:15px;
+    width:20rem;
+}
+.cancellation-container input[type="submit"],
+.cancellation-container button {
+    background-color: #007bff; /* Blue color */
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+    width:10rem;
+}
+
+.cancellation-container button#close {
+    background-color: #6c757d; /* Grey color */
+    color: white;
+    cursor: pointer;
+}
+
+#cancel-proceed:hover{
+background-color:#0056b3;
+}
+.cancellation-container button#close:hover{
+    background-color: #5a6268;
+}
+
+             </style>
 </head>
 <!-- show order and custoemr Details -->
 
@@ -145,6 +222,7 @@ if($result){
         </tr>
 </table>
 </div>
+<br>
 <?php 
  // according to user Type the verification status button are shown.
  // Admin : verification status button
@@ -164,8 +242,10 @@ if($result){
                                 Today:<input type="date" id ='todayDate' disabled><br>
                                 Cancellation Reason: <input type="text" id = 'cancel-reason' required><br>
                               
+                                <div>
                                 <input type="submit" id='cancel-proceed' value='Proceed'>
-                                  <button id = 'close'>Close</button>
+                                  <button id = 'close'>Cancel</button>
+                                </div>
                             </form>
 
                         </div>
@@ -245,6 +325,7 @@ if($result){
                                         console.log('Response:', data);
                                         alert(data.message); 
                                         setTimeout(function() { window.location.reload()},500);
+                                   
 
                                     })
                                     .catch(error => {
