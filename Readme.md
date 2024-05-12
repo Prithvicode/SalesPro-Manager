@@ -1,4 +1,4 @@
-![image](https://github.com/Prithvicode/SalesPro-Manager/assets/121741194/97b0342f-78af-4be0-9931-e6305b90c24f)<h1>SALESPRO MANAGER</h1>
+<h1>SALESPRO MANAGER</h1>
 
 <h2>Description</h2>
 <ul>
