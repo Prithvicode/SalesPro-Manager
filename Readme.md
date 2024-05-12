@@ -41,6 +41,7 @@
         <li>Admin => Email: Admin@gmail.com</li>
         <li>ProductionStaff => Email: production@gmail.com</li>
         <li>SalesStaff => Email: sales@gmail.com</li>
+        <li>Password: 1234</li>
     </ul>
 </ul>
 
