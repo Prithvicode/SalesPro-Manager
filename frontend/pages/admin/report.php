@@ -30,20 +30,15 @@ function getAdminDataFromDate($conn, $date){
     }
 
     // Query for sales
-    $sql_sales = "SELECT 
-                    COUNT(DISTINCT s.OrderID) AS total_sales,
-                    SUM(oi.Amount) AS total_cost_price,
-                    SUM(s.ProfitMade) AS total_profit,
-                    SUM(oi.Amount - s.ProfitMade) As total_price
-                FROM 
-                    sales s
-                LEFT JOIN 
-                    orders o ON s.OrderID = o.OrderID
-                LEFT JOIN 
-                    orderitems oi ON o.OrderID = oi.OrderID
-                WHERE 
-                    DATE(s.SalesTimestamp) = '$date'
-                    AND o.DeliveryStatus = 'Delivered'";
+        $sql_sales = "SELECT 
+                    count(distinct orderID) as total_sales,
+                    SUM(TotalAmount) AS total_cost_price, 
+                    SUM(ProfitMade) AS total_profit ,
+                    SUM(TotalAmount - ProfitMade) as total_price
+                    FROM sales where MoneyReceived ='Yes'
+                    and
+                    DATE(SalesTimestamp) = '$date'";
+                  
 
     $result_sales = mysqli_query($conn, $sql_sales);
 
@@ -70,6 +65,7 @@ function getProductDataFromDate($conn, $date) {
     $sql = "SELECT 
                 oi.ProductID,
                 p.ProductName,
+                p.CostPrice,
                 SUM(oi.Price) AS total_price,
                 SUM(oi.Amount) AS total_amount,
                 SUM(oi.Quantity) AS total_quantity
@@ -173,9 +169,11 @@ if (!empty($productData)) {
             <tr>
                 <th>S.No</th>
                 <th>Product Name</th>
+                
                 <th>Total Price</th>
-                <th>Total Amount</th>
                 <th>Total Quantity</th>
+                <th>Total Amount</th>
+                
             </tr>";
     
     // Loop through the product data and display it in table rows
@@ -184,6 +182,7 @@ if (!empty($productData)) {
         echo "<tr>";
         echo "<td>" . $counter. "</td>";
         echo "<td>" . $product['ProductName'] . "</td>";
+       // echo "<td>" . $product['CostPrice'] . "</td>";
         echo "<td>" . $product['total_price'] . "</td>";
         echo "<td>" . $product['total_quantity'] . "</td>";
         echo "<td>" . $product['total_amount'] . "</td>";

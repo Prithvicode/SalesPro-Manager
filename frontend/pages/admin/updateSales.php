@@ -6,7 +6,7 @@ session_start();
 
 // Get the order id
 $orderId = $_GET['id'];
-$salesStaffId = $_SESSION['UserID'];
+// $salesStaffId = $_SESSION['UserID'];
 
 
 // Get sales Details
@@ -45,7 +45,7 @@ if(isset($_POST['saleUpdate'])){
 
     // Insert sales details into database
    $updateSalesSql = "UPDATE sales SET
-                        SalesStaffID = '$salesStaffId',
+                       
                         SalesTimestamp = '$salesDate',
                         MoneyReceived = '$moneyReceived',
                         TotalAmount = '$totalAmount',
@@ -322,7 +322,6 @@ value =
                                    // alert the message 
                                    alert(data);
                                     var parentWindow = window.parent;
-            
                                     // Close the parent iframe by removing it from the DOM
                                     parentWindow.document.getElementById('orderDetailFrame').remove();
                                     parentWindow.location.reload();

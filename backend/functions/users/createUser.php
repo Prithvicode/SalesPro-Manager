@@ -18,11 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Check if the user email exits or not
-    $checkMail = "select * from users where Email = '$email'";
+    $checkMail = "select * from users where Email = '$email' or PhoneNumber ='$phone'";
     $checkResult = mysqli_query($conn, $checkMail);
     if(mysqli_num_rows($checkResult)>0){
         // it exists
-        echo "User Email already taken.";
+        echo "User Email or Phone number already taken.";
     }
     else{
     $addUserQuery = "INSERT INTO users 

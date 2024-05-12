@@ -64,6 +64,7 @@ $TOTAL_DELIVERED = $adminDashboardData['delivered_orders'];
     <main>
       <div class="header">
         <h1> Admin Dashboard</h1>
+         <h3><?php echo $_SESSION['UserName']?></h3>
         <!-- <div class="date">
           <input type="date" />
         </div> -->

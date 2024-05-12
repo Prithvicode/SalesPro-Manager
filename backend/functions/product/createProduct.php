@@ -5,39 +5,29 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$productName = $_POST['productName'];
-$description = $_POST['description'];
-$sku = $_POST['sku'];
-$productionTime = $_POST['productionTime'];
-$costPrice = $_POST['costPrice'];
-$sellingPrice = $_POST['sellingPrice'];
-$inventoryLevel = $_POST['inventoryLevel'];
+    $productName = $_POST['productName'];
+    $description = $_POST['description'];
+    $sku = $_POST['sku'];
+    $costPrice = $_POST['costPrice'];
+    $sellingPrice = $_POST['sellingPrice'];
 
+    // check if product Already exists or not
+    $productNameSql = "SELECT * FROM products WHERE ProductName = '$productName'";
+    $productResult = mysqli_query($conn, $productNameSql);
 
-$productImageTempName = $_FILES['productImage']['name'];
-$temp = $_FILES['productImage']['tmp_name'];
-$folder = "../../assets/images/".$productImageTempName;
-move_uploaded_file($temp,$folder);
+    if(mysqli_num_rows($productResult) > 0) {
+        echo "Product Already Exists";
+    } else {
+        $addProductQuery = "INSERT INTO products (ProductName, Description, SKU, CostPrice, SellingPrice)
+                            VALUES ('$productName', '$description', '$sku', '$costPrice', '$sellingPrice')";
 
-
-$addProductQuery = "INSERT into products(ProductName, Description, SKU,
-ProductionTimeDays ,CostPrice,SellingPrice ,InventoryLevel, ProductImage)
-Values ('$productName',
-        '$description',
-        '$sku',
-        '$productionTime', 
-        '$costPrice',
-        '$sellingPrice',
-        '$inventoryLevel',
-        '$folder')";
-
-$result = mysqli_query($conn, $addProductQuery);
-if($result){
-    echo "Added successfully";
-}
-  else{
-            echo 'insert failed';
+        $result = mysqli_query($conn, $addProductQuery);
+        
+        if($result) {
+            echo "Added successfully";
+        } else {
+            echo 'Insert failed';
         }
-
+    }
 }
 ?>

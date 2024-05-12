@@ -37,7 +37,7 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
 
       <li class="nav-links">
         <a href="<?php echo $SALES_HISTORY ?>">
-          <img src="<?php echo $BASE_URL; ?>images/orders.svg" alt="" />
+          <img src="<?php echo $BASE_URL; ?>images/history.svg" alt="" />
           <span>History</span>
           <!-- <img src="images/explore.svg" alt="" /> -->
         </a>

@@ -9,6 +9,7 @@ $VERIFIED_ORDERS = "verified_orders.php";
 $CUSTOMERS = "customers.php";
 $PRODUCTS = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/addProduct.php#";
 $PRODUCTION_ORDERS = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/unverifiedProd.php";
+$PRODUCTION_HISTORY = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/productionHistory.php";
 $UNVERIFIED_SALES = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/salesVerification.php";
 $SALES_HISTORY = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/salesHistory.php";
 $STAFFS = "http://localhost/InventoryAndSalesManagement/frontend/pages/admin/staffManagePage.php";
@@ -71,11 +72,13 @@ $REPORT ="http://localhost/InventoryAndSalesManagement/frontend/pages/admin/repo
           <!-- Unverified Production -->
           <ul class="hidden" id="production-items">
             <li><a href="<?php echo $PRODUCTION_ORDERS; ?>">Unverified</a></li>
+            
+            <li><a href="<?php echo $PRODUCTION_HISTORY; ?>">History</a></li>
             <!-- Add more menu items as needed -->
           </ul>
         <li class="nav-links">
           <a href="javascript:void(0);" onclick="toggleSubmenu('sales-items')">
-            <img src="<?php echo $BASE_URL; ?>images/staff.svg" alt="" />
+            <img src="<?php echo $BASE_URL; ?>images/salesIcon.svg" alt="" />
             <span>Sales</span>
 
             <img src="<?php echo $BASE_URL; ?>images/explore.svg" style="margin-left:2.7rem"alt="" />

@@ -17,19 +17,24 @@ else {
     include '../../../backend/functions/orders/getOrder.php';
     include '../../../backend/functions/orders/getOrderItems.php';
     include '../../../backend/functions/sales/getSales.php';
-  $currentSalesStaffId = $_SESSION['UserID'];
+
+$currentSalesStaffId = $_SESSION['UserID'];
+
+$salesTotals =  getSalesStaffDashboard($conn, $currentSalesStaffId);
+$TOTAL_REVENUE= $salesTotals['total_sales'];
+$TOTAL_PROFIT = $salesTotals['total_profit'];
+$TOTAL_SALES = $salesTotals['total_sales_number'];
+
 $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 // Dynamics Values
-$totalOrderdata = getOrderForSalesDashboard($conn,$currentSalesStaffId);
+$totalOrderdata = getOrderForSalesDashboard($conn, $currentSalesStaffId);
 $ASSIGNED_ORDER = $totalOrderdata['assigned_orders'];
 $IN_TRANSIT_ORDERS = $totalOrderdata['in_transit_delivery'];
 $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
 
 
- $salesTotals =  getSalesStaffDashboard($conn, $currentSalesStaffId);
- $TOTAL_SALES = $salesTotals['total_sales'];
-  $TOTAL_PROFIT = $salesTotals['total_profit'];
-  $TOTAL_REVENUE = $TOTAL_SALES - $TOTAL_PROFIT;
+
+//   $TOTAL_REVENUE = $TOTAL_SALES - $TOTAL_PROFIT;
 
   $requestedOrders = [];
     // Show unveified i.e Pending Order list
@@ -84,6 +89,7 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
     <main>
         <div class="header">
             <h1>Sales Dashboard</h1>
+             <h3><?php echo $_SESSION['UserName']?></h3>
             <!-- <div class="date">
                 <input type="date" />
             </div> -->
@@ -96,7 +102,7 @@ $DELIVERED_ORDERS= $totalOrderdata['delivered_orders'];
                         <img src="<?php echo $BASE_URL; ?>images/icons/total_sales.png" id="total-sales" class="card-logo" alt="">
                         <div class="cards-details">
                             <span class="card-title">Total Sales:</span>
-                            <h3><?php echo $TOTAL_SALES ?></h3>
+                            <h3><?php echo  $TOTAL_SALES ?></h3>
                         </div>
                     </div>
                     <div class="cards">

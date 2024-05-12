@@ -23,6 +23,7 @@ if(isset($_POST['login'])){
             // Create session.
             $_SESSION['UserID'] = $row['UserID']; // Set the session variable
             $_SESSION['UserType'] = $row['UserType']; // Set the session variable
+            $_SESSION['UserName'] = $row['FirstName']. " ". $row['LastName'];
 
             // $GLOBALS['userID'] = $row['userID'];
             // $GLOBALS['Name'] = $row['firstName'];

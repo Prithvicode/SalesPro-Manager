@@ -8,6 +8,8 @@ $DASHBOARD = "http://localhost/InventoryAndSalesManagement/frontend/pages/custom
 $NEWORDERS = "http://localhost/InventoryAndSalesManagement/frontend/pages/customer/newOrder.php";
 $ORDERS= "http://localhost/InventoryAndSalesManagement/frontend/pages/customer/orderStatusPage.php";
 $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authentication/logout.php";
+$PRODUCTS = "http://localhost/InventoryAndSalesManagement/frontend/pages/customer/product.php";
+
 
 ?>
 <head>
@@ -25,6 +27,13 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
           <a href="<?php echo $DASHBOARD ?>">
             <img src="<?php echo $BASE_URL?>images/dashboard.svg" alt="" />
             <span>Dashboard</span>
+          </a>
+        </li>
+         <li class="nav-links">
+          <a href="<?php echo $PRODUCTS?>">
+            <img src="<?php echo $BASE_URL; ?>images/productNav.svg" height=26px width=26px alt="" />
+            <span>Products</span>
+            <!-- <img src="images/explore.svg" alt="" /> -->
           </a>
         </li>
         <li class="nav-links">

@@ -4,7 +4,7 @@ if(!isset($_SESSION['UserID'])){
 header('location: http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php');
 }
 
-if( $_SESSION['UserType'] != 'ProductionStaff'){
+if( $_SESSION['UserType'] != 'Admin'){
     echo "Access Denied";
 
 }
@@ -43,21 +43,32 @@ $requestedOrders = [];
         }
     }
 ?>
-<head>
-      <title>Production History</title>
-<link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales History</title>
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
     <link rel="stylesheet" href='../../components/tables/table.css' />
-    <link rel="stylesheet" href='productionStyle.css' />
+    <!-- <link rel="stylesheet" href='productionStyle.css' /> -->
+    
+    <style>
+.frame-wrapper {
+  /* background-color:aqua; */
+  height: 90%;
+  display: flex;
+  /* flex-direction:column; */
+  /* top:10; */
+  align-items: center;
+  justify-content: center;
+}
 
+    </style>
 </head>
-  <body>
-  
+   <body>
+     
 <div class="container">
   <?php
-   include '../../components/sidebar/prodStaffSidebar.php'; 
+     include '../../components/sidebar/adminSidebar.php'; 
 ?>
-
-
 
 <main>
     <div class="header">

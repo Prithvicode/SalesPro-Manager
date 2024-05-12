@@ -66,6 +66,7 @@ $PRODUCTION_COMPLETED_TODAY = $productionDataToday['completed_production'];
     <main>
       <div class="header">
         <h1>Production Dashboard</h1>
+        <h3><?php echo $_SESSION['UserName']?></h3>
         <!-- <div class="date">
           <input type="date" />
         </div> -->

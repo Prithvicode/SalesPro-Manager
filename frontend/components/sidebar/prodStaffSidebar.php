@@ -39,7 +39,7 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
 
         <li class="nav-links">
           <a href="<?php echo $PRODUCTION_STARTED; ?>">
-            <img src="<?php echo $BASE_URL; ?>images/inventory.svg" alt="" />
+            <img src="<?php echo $BASE_URL; ?>images/startedprod.svg" alt="" />
             <span>Production Started</span>
             <!-- <img src="images/explore.svg" alt="" /> -->
           </a>
@@ -47,7 +47,7 @@ $LOGOUT= "http://localhost/InventoryAndSalesManagement/backend/functions/authent
 
           <li class="nav-links">
           <a href="<?php echo $PRODUCTION_HISTORY; ?>">
-            <img src="<?php echo $BASE_URL; ?>images/inventory.svg" alt="" />
+            <img src="<?php echo $BASE_URL; ?>images/history.svg" alt="" />
             <span>Production History</span>
             <!-- <img src="images/explore.svg" alt="" /> -->
           </a>

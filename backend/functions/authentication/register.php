@@ -22,12 +22,12 @@ if(isset($_POST['register'])){
 
 
     // check if email already exists?
-    $emailQuery = "Select * from users where email = '$inputEmail'";
+    $emailQuery = "Select * from users where email = '$inputEmail' or PhoneNumber = '$inputPhoneno' ";
     $emailResult = mysqli_query($conn, $emailQuery);
 
     if(mysqli_num_rows($emailResult) > 0){
         // Email already exists.
-        header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php?msg=Use Already Exists. Try new email.");
+        header("Location:http://localhost/InventoryAndSalesManagement/frontend/pages/registerPage.php?msg=User Already Exists. Try new email or phone number.");
     }
     else{
         if($inputPassword == $inputConfirmPass){

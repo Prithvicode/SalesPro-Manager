@@ -18,7 +18,7 @@ session_start();
         <input type="text" id="productName" name="productName" required><br>
 
         <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea><br>
+        <textarea id="description" name="description" required></textarea><br>
 
         <label for="sku">SKU:</label><br>
        <select id="sku" name="sku">
@@ -66,7 +66,7 @@ session_start();
         .then(data => {
             console.log(data); // Log the response from the server
             // You can perform additional actions based on the response
-            alert("Added successfully");
+            alert(data);
             window.location.reload() // Show an alert if added successfully
 
         })

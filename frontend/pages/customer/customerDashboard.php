@@ -55,6 +55,7 @@ $DELIVERED = $customerTotalData['delivered_orders'];
   <main>
     <div class="header">
         <h1> Dashboard</h1>
+         <h3 style ="color: rgb(30, 107, 215);"><?php echo $_SESSION['UserName']?></h3>
         <!-- <div class="date">
           <input type="date" /> -->
         <!-- </div> -->
