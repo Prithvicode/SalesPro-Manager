@@ -30,6 +30,7 @@
 <ul>
     <li>Extract in htdocs of XAMPP</li>
     <li>Import salesproDb.sql</li>
+    <li>Configure db in backend/db/dbconfig.php</li>
 </ul>
 
 <h3>Use:</h3>
