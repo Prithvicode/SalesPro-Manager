@@ -1,8 +1,3 @@
-// Need to add
-// Cancellation time and status
-// Date selection when Order Quota is completed.
-// Duration and expected duration.
-
 document.addEventListener("DOMContentLoaded", function () {
   const addProductBtn = document.getElementById("addProductBtn");
   const productList = document.getElementById("productList");

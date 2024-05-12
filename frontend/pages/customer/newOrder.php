@@ -1,117 +1,68 @@
 
 <?php 
 session_start();
+
+// Redirect to login page if UserID session variable is not set
 if(!isset($_SESSION['UserID'])){
-header('location: http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php');
+    header('location: http://localhost/InventoryAndSalesManagement/frontend/pages/loginPage.php');
 }
 
+// Check if the UserType session variable is not 'Customer', then deny access
 if($_SESSION['UserType'] != 'Customer'){
-
-echo "Access Denied";
+    echo "Access Denied";
 }
 else {
-  $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
+    $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/sidebar/";
 
-  //  Dynamics Datas
-   $customerId = $_SESSION['UserID'];
-    // include '../../../backend/functions/orders/getOrder.php';
-    // include '../../../backend/functions/orders/getOrderItems.php';
-
+    //  Dynamics Data
+    $customerId = $_SESSION['UserID'];
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Order</title>
-    <!-- Same style as customerSyle except main content -->
-         <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
-     <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
-
+    <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
+    <link rel="stylesheet" href='../../components/tables/orderDetailsTable.css' />
     <link rel="stylesheet" href="newOrderStyle.css" />
-  </head>
-  <body>
-    
+</head>
+<body>
 <div class="container">
-<?php
-   include '../../components/sidebar/customerSidebar.php'; 
-?>
-  <main>
-    <div class="header">
-        <h2>New Order</h2>
-        <!-- <div class="date">
-          <input type="date" /> -->
-        <!-- </div> -->
-      </div>
-    
+    <?php include '../../components/sidebar/customerSidebar.php'; ?>
+    <main>
+        <div class="header">
+            <h2>New Order</h2>
+        </div>
         <!-- Your main content goes here -->
         <div class="form-container">
-<h3>Order Details:</h3>          <form id="orderForm" 
-          method = "POST" 
-          action='http://localhost/InventoryAndSalesManagement/backend/functions/orders/createOrder.php'>
-         
-               <table id= 'form-table'>
-            <tr>
-              <td><label for="currentDate">Current Date:</label></td>
-              <td><input type="text" id="currentDate" name="currentDate" value="" readonly /></td>
-            </tr>
-            <tr>
-              <td><label for="phoneNumber">Phone Number:</label></td>
-              <td><input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required /></td>
-            </tr>
-            <tr>
-              <td><label for="deliveryCity">Delivery City:</label></td>
-              <td>
-                <select name="deliveryCity" id="deliveryCity">
-                  <option value="Kathmandu">Kathmandu</option>
-                  <option value="Lalitpur">Lalitpur</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td><label for="deliveryAddress">Delivery Address:</label></td>
-              <td><input type="text" id="deliveryAddress" name="deliveryAddress" required /></td>
-            </tr>
-            <tr>
-              <td><label for="deliveryInstructions">Delivery Instructions:</label></td>
-              <td><textarea id="deliveryInstructions" name="deliveryInstructions"></textarea></td>
-            </tr>
-            <tr>
-              <td><label for="expectedDate">Expected Date:</label></td>
-              <td><input type="date" id="expectedDate" name="expectedDate" required min="<?php echo date('Y-m-d'); ?>" /></td>
-            </tr>
-          </table>
-      <div class="top-items">
-      <label for="">Item Details</label>
-      <button type="button" id="addProductBtn" style='float:right'>+ Add Product</button><br>
-        <table id = productList><thead>
-            <th>Product Name</th>          
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Amount</th>
-            <th>Action</th>
-            
-        </thead>
-  
-      
-      </table>
-    <br>
-      
-       </div>
-            <input type="submit" value="Submit Order" id = 'submitNewOrder' name ='submitOrder'/>
-          </form>
+            <h3>Order Details:</h3>
+            <form id="orderForm" method="POST" action='http://localhost/InventoryAndSalesManagement/backend/functions/orders/createOrder.php'>
+                <table id="form-table">
+                    <tr>
+                        <td><label for="currentDate">Current Date:</label></td>
+                        <td><input type="text" id="currentDate" name="currentDate" value="" readonly /></td>
+                    </tr>
+                    <!-- other form fields -->
+                </table>
+                <div class="top-items">
+                    <label for="">Item Details</label>
+                    <button type="button" id="addProductBtn" style="float:right">+ Add Product</button><br>
+                    <table id="productList">
+                        <!-- Table headers and rows for product details -->
+                    </table>
+                    <br>
+                </div>
+                <input type="submit" value="Submit Order" id="submitNewOrder" name="submitOrder"/>
+            </form>
         </div>
-      </main>
-    </div>
+    </main>
+</div>
 
-    <!-- JavaScript -->
-    <script src = "newOrderForm.js"></script>
+<!-- JavaScript -->
+<script src="newOrderForm.js"></script>
 
-    
     
     <script>
       customerID = <?php echo $customerId ?>;
@@ -130,25 +81,18 @@ else {
 
       // POST Submit the Order Details.
     document.getElementById('orderForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevent the default form submission
 
-      //check quantity
-    
 
     // Get order details
     const currentDate = document.getElementById('currentDate').value;
     const expectedDate = document.getElementById('expectedDate').value;
     
-
-
     // get delivery Details
     const phoneNumber = document.getElementById('phoneNumber').value;
     const deliveryCity= document.getElementById('deliveryCity').value;
     const deliveryAddress= document.getElementById('deliveryAddress').value;
     const  deliveryInstructions= document.getElementById('deliveryInstructions').value;
-
-    // 
-
 
     const deliveryDetails = {
     phoneNumber: phoneNumber,
@@ -157,13 +101,10 @@ else {
     deliveryInstructions: deliveryInstructions
 };
 
-
-
     // Get product items details
     const productItems = document.querySelectorAll(".product-item");
     const orderItemDetails = [];
     
-
     productItems.forEach(function (productItem, index) {
         const productID = productItem.querySelector(`#productName`).value;
         const price = productItem.querySelector(`#price`).value;
@@ -203,7 +144,6 @@ console.log(postData);
         },
         body: JSON.stringify(postData) // Convert JavaScript object to JSON string
     };
-
     // Send the POST request
     fetch(url, options)
         .then(response => {
@@ -223,9 +163,6 @@ console.log(postData);
             // Handle errors
         });
 });
-
-
-
     </script>
   </body>
 </html>

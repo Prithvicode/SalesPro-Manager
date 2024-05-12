@@ -143,7 +143,6 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
                     <td><a href= "#" class ='editBtn'  data-productid="${product.ProductID}"> Edit </a></td>
                     <td><a onclick="confirmDelete(${product.ProductID})" class ='deleteBtn'>Delete</a></td>
                    
-               
             `;
 
             productTableBody.appendChild(row);

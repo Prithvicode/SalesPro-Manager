@@ -1,3 +1,4 @@
+/* Reset default margin and padding for elements */
 body,
 h1,
 h2,
@@ -13,7 +14,6 @@ li {
 body {
   font-family: "Arial", sans-serif;
   background-color: #f4f4f4;
-  /* display: flex; */
   min-height: 100vh;
 }
 
@@ -84,6 +84,7 @@ body {
   background-color: #007bff;
 }
 
+/* Hero section styles */
 .hero {
   display: flex;
 }

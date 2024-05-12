@@ -431,9 +431,7 @@ background-color:#0056b3;
                                 updateOrderStatus(orderId,'ProductionStatus', 'Completed');
 
                             })
-
-                        
-                            
+                          
 
                         </script>
                     </div>

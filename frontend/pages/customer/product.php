@@ -83,7 +83,6 @@ if($_SESSION['UserType'] != 'Customer'){
                     <td>${product.SKU}</td>
                     <td>${product.SellingPrice}</td>
                    
-               
             `;
 
             productTableBody.appendChild(row);
