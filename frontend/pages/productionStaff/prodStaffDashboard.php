@@ -33,9 +33,6 @@ $PRODUCTION_NOT_STARTED_TODAY =$productionDataToday['not_started_production'] ;
 $PRODUCTION_STARTEDS_TODAY = $productionDataToday['started_production'];
 $PRODUCTION_COMPLETED_TODAY = $productionDataToday['completed_production'];
 
-
-// $TOP_PRODUCTION;
-// $LEAST_PRODUCTION;
 ?>
 
 <!DOCTYPE html>
@@ -45,14 +42,9 @@ $PRODUCTION_COMPLETED_TODAY = $productionDataToday['completed_production'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Production Staff Dashboard</title>
     <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
-   <link rel="stylesheet" href='../../components/tables/table.css' />
+    <link rel="stylesheet" href='../../components/tables/table.css' />
     <link rel="stylesheet" href='productionStyle.css' />
     
-    <style>
-
-    </style>
-   
-
   </head>
   <body>
   
@@ -60,24 +52,19 @@ $PRODUCTION_COMPLETED_TODAY = $productionDataToday['completed_production'];
   <?php
    include '../../components/sidebar/prodStaffSidebar.php'; 
 ?>
-
-
     <!-- Main section -->
     <main>
       <div class="header">
         <h1>Production Dashboard</h1>
         <h3><?php echo $_SESSION['UserName']?></h3>
-        <!-- <div class="date">
-          <input type="date" />
-        </div> -->
+
       </div>
 
       <div class="card-container">
-        <!-- <h3>Today's Data</h3> -->
-        <!-- Sales -->
+        
         <div class="sales-cards">
           <h3>Production Overview</h3>
-          <!-- <div class="sales-activities"> -->
+        
          <!-- sales card row 1 -->
 <div class="sales-row">
    <div class="cards">
@@ -196,8 +183,6 @@ $PRODUCTION_COMPLETED_TODAY = $productionDataToday['completed_production'];
           </div>
         </div>
 
-        <!-- No of users -->
-        <!-- Top sales tables? -->
       </div>
 
       <?php
@@ -242,7 +227,7 @@ $requestedOrders = [];
                 <th>Order Date</th>
                 <th>Production Status</th>
                 <th>Delivery Date</th>
-                <!-- <th>Order Details</th> -->
+              
 </thead>
 <?php 
              $counter = 1; 
@@ -252,7 +237,6 @@ $requestedOrders = [];
                     <td><?php echo $order['OrderDate']; ?></td>
                     <td><?php echo $order['ProductionStatus']; ?></td>
                     <td><?php echo $order['DeliveryDate']; ?></td>
-                     <!-- <td><a href="?id=<?php echo $order['OrderID']?>" class="showOrderDetails">Show details</a></td> -->
                 </tr>
             <?php 
             $counter++; endforeach; ?>
@@ -261,8 +245,6 @@ $requestedOrders = [];
   </div>
     </main>
 </div>
-    <!-- JavaScript -->
-    <script src="scripts.js"></script>
   </body>
 </html>
 <?php

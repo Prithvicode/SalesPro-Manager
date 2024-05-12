@@ -1,6 +1,5 @@
 <?php
 
-
 function addDeliveryDetailsForOrders($conn,$details, $orderID){
 $phoneNo = $details['phoneNumber'];
  $deliveryCity= $details['deliveryCity'];
@@ -19,11 +18,10 @@ $deliveryInstructions = $details['deliveryInstructions'];
     $result = mysqli_query($conn, $insertDelivery);
 
     if($result){
-        
-
-
+        // No reply when insertion successful.
+    
     }else{
-        
+        // No reply when failed, could add later. 
     }
 
 }

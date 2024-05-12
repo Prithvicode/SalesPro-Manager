@@ -14,11 +14,8 @@ $BASE_URL = "http://localhost/InventoryAndSalesManagement/frontend/components/si
 
 include '../../../backend/db/dbconfig.php';
 
-
 $requestedOrders = [];
     // Show unveified i.e Pending Order list
-
-
     $pendingOrderSql = "SELECT orders.*, CONCAT(users.FirstName, ' ', users.LastName) AS Name
                         FROM orders
                         JOIN users ON orders.CustomerID = users.UserID
@@ -45,38 +42,6 @@ $requestedOrders = [];
     }
 ?>
 <head>
-    <!-- <style>
-        .hero{
-display:flex;
-        }
-    
-    
-.orders-containers {
-  /* background-color: blue; */
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  gap: 5rem;
-}
-#orderTable {
-    height:auto;
-    width:auto;
-}
-
-#orderDetailFrame {
-  display: flex;
-  flex-direction: column;
-  /* background-color: blue; */
-  width: 400px;
-  height: auto;
-}
-
-#iframeContent {
-  width: 500px;
-  height: auto;
-} -->
-</style>
  <title>Production Started</title>
 <link rel="stylesheet" href='../../components/sidebar/sidebar.css' />
     <link rel="stylesheet" href='../../components/tables/table.css' />
@@ -88,8 +53,6 @@ display:flex;
   <?php
    include '../../components/sidebar/prodStaffSidebar.php'; 
 ?>
-
-  
 
 <main>
     <div class="header">

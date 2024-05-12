@@ -13,23 +13,14 @@ $data = json_decode(file_get_contents("php://input"));
     }
 
 }
-
-
-
-
-
    
 function updateOrderStatus($conn, $orderId,$statusType, $statusValue){
     $prodStartBtnSql = "UPDATE orders set $statusType = '$statusValue' where OrderID = '$orderId'";
     $result = mysqli_query($conn, $prodStartBtnSql);
     if($result){
         echo  $statusType ." ".'changed to'." ".$statusValue;
-    }
-
-                           
+    }                         
 
 }                     
                               
-                            
-
 ?>
